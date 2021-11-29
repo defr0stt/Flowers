@@ -1,5 +1,6 @@
 package JavaFXpart;
 
+import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Additional.Additional;
 import JavaFXpart.Receiver.Receiver;
 import javafx.animation.FadeTransition;
@@ -51,6 +52,7 @@ public class StartMenu extends Application {
         // ===========================================================================================================
 
         Button flower = buttonConstructor("Flower","Flower menu",1,2,290.0,425.0);                 // button 'Flower'
+        flower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
 
         Button additional = buttonConstructor("Additional","Additional menu",1,2,335.0,415.0);     // button 'Additional'
         additional.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
