@@ -25,7 +25,7 @@ public class Additional implements Command
 
         ImageView backImageView = null;
         try {
-            backImageView = new StartMenu().imageConstructor("D:\\Dima\\Programming\\java\\Flowers\\bckt.png",1,2,120.0,50.0);
+            backImageView = new StartMenu().imageConstructor("resources/bckt.png",1,2,120.0,50.0);
             backImageView.setFitHeight(432);
             backImageView.setFitWidth(272);
 
@@ -56,7 +56,7 @@ public class Additional implements Command
 
         ImageView backImageView = null;
         try {
-            backImageView = new StartMenu().imageConstructor("D:\\Dima\\Programming\\java\\Flowers\\bckt.png",1,2,120.0,50.0);
+            backImageView = new StartMenu().imageConstructor("resources/bckt.png",1,2,120.0,50.0);
             backImageView.setFitHeight(432);
             backImageView.setFitWidth(272);
 
@@ -122,7 +122,7 @@ public class Additional implements Command
 
         ImageView backImageView = null;
         try {
-            backImageView = new StartMenu().imageConstructor("D:\\Dima\\Programming\\java\\Flowers\\bckt.png",1,2,120.0,50.0);
+            backImageView = new StartMenu().imageConstructor("resources/bckt.png",1,2,120.0,50.0);
             backImageView.setFitHeight(432);
             backImageView.setFitWidth(272);
 
@@ -155,18 +155,18 @@ public class Additional implements Command
             if(!file1.exists()) {
                 file1.createNewFile();
                 PrintWriter obj1 = new PrintWriter(file1);
-                obj1.write(line);              // запис інформації
+                obj1.write(line);              // writing an information
                 obj1.close();
                 i--;
             }
             else if(file1.exists() && i==1)
             {
                 PrintWriter obj1 = new PrintWriter(file1);
-                obj1.write("");              // запис інформації
+                obj1.write("");              // writing an information
                 obj1.close();
                 i--;
             }
-            else Files.write(Paths.get("bouquet.txt"), line.getBytes(), StandardOpenOption.APPEND);    // додавання в існуючий файл
+            else Files.write(Paths.get("bouquet.txt"), line.getBytes(), StandardOpenOption.APPEND);    // adding in existing file
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -45,7 +45,7 @@ public class StartMenu extends Application {
         Text welcomeText = textConstructor("Welcome  to  the  program  'Flowers' !",1,2,50.0,250.0);
         welcomeText.setStyle("-fx-font-size: 24px;");
 
-        ImageView welcomeImageView = imageConstructor("D:\\Dima\\Programming\\java\\Flowers\\flower.png",1,2,110.0,385.0);
+        ImageView welcomeImageView = imageConstructor("resources/flower.png",1,2,110.0,385.0);
 
         // ===========================================================================================================
         //                                                  Main menu buttons
@@ -66,6 +66,7 @@ public class StartMenu extends Application {
 
         AnchorPane anchorPane = authorPlusImagePulsing(welcomeText);
         anchorPane = (AnchorPane) sumAllElements(anchorPane, new Node[]{welcomeImageView,flower,additional,exit});
+//        anchorPane = (AnchorPane) sumAllElements(anchorPane, new Node[]{new ImageView(),flower,additional,exit});
 
         sceneStarter(anchorPane,stage);
     }
@@ -77,7 +78,7 @@ public class StartMenu extends Application {
         AnchorPane.setRightAnchor(textAuthorRightBottomPage,10.0);                            //
         AnchorPane.setBottomAnchor(textAuthorRightBottomPage,10.0);                           //
 
-        Image pulseLeftBottomImage = new Image(new FileInputStream ("D:\\Dima\\Programming\\java\\Flowers\\flower.png"));
+        Image pulseLeftBottomImage = new Image(new FileInputStream ("resources/flower.png"));
         ImageView pulseLeftBottomImageView = new ImageView(pulseLeftBottomImage);
         pulseLeftBottomImageView.setFitHeight(35);
         pulseLeftBottomImageView.setFitWidth(35);
@@ -103,7 +104,7 @@ public class StartMenu extends Application {
         Scene scene = new Scene(pane, 900, 550);
         stage.setResizable(false);
         stage.setTitle("Flowers");
-        stage.getIcons().add(new Image("file:D:\\Dima\\Programming\\java\\Flowers\\flower.png"));
+        stage.getIcons().add(new Image("file:resources/flower.png"));
         stage.setScene(scene);
         stage.show();
     }
