@@ -22,4 +22,6 @@ public class StartMenu extends Application {
 }
 ```
 It throws IOException because of that method calling other methods in which contained ```FileInputStream (wayToImage)```
-which can lead to ```FileNotFoundException```.
+which can lead to ```FileNotFoundException```. Start menu of my program has the next view : 
+
+![StartMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/StartMenu1.PNG)
