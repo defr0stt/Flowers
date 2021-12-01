@@ -66,7 +66,6 @@ public class StartMenu extends Application {
 
         AnchorPane anchorPane = authorPlusImagePulsing(welcomeText);
         anchorPane = (AnchorPane) sumAllElements(anchorPane, new Node[]{welcomeImageView,flower,additional,exit});
-//        anchorPane = (AnchorPane) sumAllElements(anchorPane, new Node[]{new ImageView(),flower,additional,exit});
 
         sceneStarter(anchorPane,stage);
     }
