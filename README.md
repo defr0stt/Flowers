@@ -58,4 +58,4 @@ which can lead to ```FileNotFoundException```. Start menu of my program has the 
 ![StartMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Start1.png)
 
 In the left bottom corner program has an animation of blinking image. There are 2 buttons which help you to move from
-one menu item to another.
+one menu item to another and 1 button to close this program.
