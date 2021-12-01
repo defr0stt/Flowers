@@ -18,7 +18,7 @@ public class Receiver {
     public void variation(ActionFlowers a, int i)
     {
         switch (i){
-//            case 1: a.bouquet();break;
+            case 1: a.createFlower();break;
 //            case 2: a.delete();break;
             case 3: a.flowerList();break;
 //            case 4: a.create_b();break;
