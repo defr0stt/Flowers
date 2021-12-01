@@ -1,5 +1,6 @@
 package JavaFXpart.Receiver;
 
+import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Additional.Additional;
 
 public class Receiver {
@@ -14,15 +15,15 @@ public class Receiver {
             case 2: a.information();break;
         }
     }
-//    public void variation(ActionFlowers a, int i)
-//    {
-//        switch (i){
+    public void variation(ActionFlowers a, int i)
+    {
+        switch (i){
 //            case 1: a.bouquet();break;
 //            case 2: a.delete();break;
-//            case 3: a.flowList();break;
+            case 3: a.flowerList();break;
 //            case 4: a.create_b();break;
 //            case 5: a.changePar();break;
-//        }
-//    }
+        }
+    }
 }
 
