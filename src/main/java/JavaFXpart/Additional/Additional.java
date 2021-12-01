@@ -20,19 +20,7 @@ public class Additional implements Command
 {
     @Override
     public void execute()  {
-        Text welcomeAdditionalText = new StartMenu().textConstructor("Additional  menu",1,2,50.0,365.0);
-        welcomeAdditionalText.setStyle("-fx-font-size: 24px;");
-
-        ImageView backImageView = null;
-        try {
-            backImageView = new StartMenu().imageConstructor("resources/bckt.png",1,2,120.0,50.0);
-            backImageView.setFitHeight(432);
-            backImageView.setFitWidth(272);
-
-            StartMenu.pane = new StartMenu().authorPlusImagePulsing(welcomeAdditionalText);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        additionalMenuView();
 
         Button infoButton = new StartMenu().buttonConstructor("Information","Info about flowers",1,2,260.0,425.0);
         infoButton.setOnAction(actionEvent -> {new Receiver().variation(new Additional(),2);});
@@ -46,13 +34,14 @@ public class Additional implements Command
                 e.printStackTrace();
             }});
 
-        StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane, new Node[]{backImageView, infoButton, fileButton, mainMenuButton});
+        StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane, new Node[]{ infoButton, fileButton, mainMenuButton});
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
     }
 
-    public void information() {
-        Text welcomeInfoText = new StartMenu().textConstructor("Additional  menu\n    Information",1,2,50.0,365.0);
-        welcomeInfoText.setStyle("-fx-font-size: 24px;");
+    public void additionalMenuView()
+    {
+        Text welcomeAdditionalText = new StartMenu().textConstructor("Additional  menu",1,2,50.0,365.0);
+        welcomeAdditionalText.setStyle("-fx-font-size: 24px;");
 
         ImageView backImageView = null;
         try {
@@ -60,10 +49,18 @@ public class Additional implements Command
             backImageView.setFitHeight(432);
             backImageView.setFitWidth(272);
 
-            StartMenu.pane = new StartMenu().authorPlusImagePulsing(welcomeInfoText);
+            StartMenu.pane = new StartMenu().authorPlusImagePulsing(welcomeAdditionalText);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        StartMenu.pane.getChildren().add(backImageView);
+    }
+
+    public void information() {
+
+        additionalMenuView();
+        Text infoWelcome = new StartMenu().textConstructor("Information",1,2,80.0,400.0);
+        infoWelcome.setStyle("-fx-font-size: 24px;");
 
         Text infoText = new StartMenu().textConstructor("\n\n\tRose" + "   -   such a beautiful flower, costs 10$" +
         "\n\n\tChrysanthemum" + "   -   unbelievable flower, costs 20$" +
@@ -104,7 +101,7 @@ public class Additional implements Command
 
 
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{backImageView, infoText, rose1, rose2, rose3, chrysanthemum1, chrysanthemum2, chrysanthemum3,
+                new Node[]{infoWelcome, infoText, rose1, rose2, rose3, chrysanthemum1, chrysanthemum2, chrysanthemum3,
                         lily1, lily2, lily3, orchid1, orchid2, orchid3, tulip1, tulip2, tulip3, backToAdditional, backToMainMenu});
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
     }
@@ -114,22 +111,12 @@ public class Additional implements Command
         String fileCapacity = fromFile("bouquet.txt");
         if(fileCapacity.equals(""))     fileCapacity = "There is no data in file or\n      file not found";
 
-        Text welcomeFromFileText = new StartMenu().textConstructor("   Additional  menu\nReading data from file",1,2,50.0,365.0);
-        welcomeFromFileText.setStyle("-fx-font-size: 24px;");
+        additionalMenuView();
+        Text fileWelcome = new StartMenu().textConstructor("Reading data from file",1,2,80.0,340.0);
+        fileWelcome.setStyle("-fx-font-size: 24px;");
 
         Text fromFileText = new StartMenu().textConstructor(fileCapacity,1,2,140.0,425.0);
         fromFileText.setStyle("-fx-font-size: 14px;");
-
-        ImageView backImageView = null;
-        try {
-            backImageView = new StartMenu().imageConstructor("resources/bckt.png",1,2,120.0,50.0);
-            backImageView.setFitHeight(432);
-            backImageView.setFitWidth(272);
-
-            StartMenu.pane = new StartMenu().authorPlusImagePulsing(welcomeFromFileText);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         Button mainMenuButton = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,485.0,425.0);
         mainMenuButton.setOnAction(actionEvent -> {
@@ -142,7 +129,7 @@ public class Additional implements Command
         backToAdditional.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
 
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{backImageView, backToAdditional, mainMenuButton, fromFileText});
+                new Node[]{fileWelcome, backToAdditional, mainMenuButton, fromFileText});
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
 
     }
