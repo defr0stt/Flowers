@@ -1,8 +1,6 @@
 package JavaFXpart.ActionFlowers;
 
-import JavaFXpart.Flowers.FlowerTemplate;
-import JavaFXpart.Flowers.Rose;
-import JavaFXpart.Flowers.Chrysanthemum;
+import JavaFXpart.Flowers.*;
 import JavaFXpart.Receiver.Command;
 import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
@@ -36,10 +34,17 @@ public class ActionFlowers implements Command {
         flowerList.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),3);});
         Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,275.0,417.0);
         createFlower.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),1);});
+        Button mainMenu = new StartMenu().buttonConstructor("Main menu","Back 'Main menu'",1,2,375.0,422.0);
+        mainMenu.setOnAction(actionEvent -> {
+            try {
+                new StartMenu().start(StartMenu.defaultStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }});
 
         StartMenu.pane = flowerMenuView();
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{flowerList, createFlower});
+                new Node[]{flowerList, createFlower, mainMenu});
     }
 
     public Pane flowerMenuView()
@@ -78,7 +83,11 @@ public class ActionFlowers implements Command {
         return StartMenu.pane;
     }
 
-    public void flowerList()
+    // ===========================================================================================================
+    //                                             List of flowers part
+    // ===========================================================================================================
+
+    public void flowerList()    //todo max = 10 flowers - if more the text overlaps on buttons
     {
         Text welcomeFlowerList = new StartMenu().textConstructor("Flower list",1,2,80.0,400.0);
         welcomeFlowerList.setStyle("-fx-font-size: 24px;");
@@ -146,24 +155,38 @@ public class ActionFlowers implements Command {
         orchid.setToggleGroup(radioButtonGroup);
         tulip.setToggleGroup(radioButtonGroup);
 
+        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower creation",1,2,455.0,425.0);
+        confirmButton.setOnAction(actionEvent -> {confirmingCreation();});
+        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,428.0);
+        backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
+
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{welcomeCreateFlower, rose, chrysanthemum, lily, orchid, tulip});
+                new Node[]{welcomeCreateFlower, backToFlower, rose, chrysanthemum, lily, orchid, tulip, confirmButton});
     }
 
+    int createNumber;
     public void chooseFlowerToCreate(int i)     // todo add some cases
     {
+        createNumber = i;
         if( StartMenu.pane.getChildren().get(StartMenu.pane.getChildren().size()-1).getClass().getName()
-                != "javafx.scene.control.RadioButton") {
+                == "javafx.scene.text.Text") {
+            StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size() - 1);
+        }
+        if( StartMenu.pane.getChildren().get(StartMenu.pane.getChildren().size()-1).getClass().getName()
+                != "javafx.scene.control.Button") {
             StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
             StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
             StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
         }
+        colorGlobal = null;
+        day = 0;
+        len = 0;
         switch (i){
             case 1: inputToChoose(); createFlowerColor(Color.RED,Color.PINK,Color.WHITE);break;
-            case 2: inputToChoose();createFlowerColor(Color.CRIMSON,Color.YELLOW,Color.MEDIUMPURPLE);break;
-            case 3: inputToChoose();createFlowerColor(Color.ORANGE,Color.YELLOW,Color.WHITE);break;
-            case 4: inputToChoose();createFlowerColor(Color.MEDIUMVIOLETRED,Color.MAGENTA,Color.WHITE);break;
-            case 5: inputToChoose();createFlowerColor(Color.MEDIUMVIOLETRED,Color.RED,Color.YELLOW);break;
+            case 2: inputToChoose(); createFlowerColor(Color.CRIMSON,Color.YELLOW,Color.MEDIUMPURPLE);break;
+            case 3: inputToChoose(); createFlowerColor(Color.ORANGE,Color.YELLOW,Color.WHITE);break;
+            case 4: inputToChoose(); createFlowerColor(Color.MEDIUMVIOLETRED,Color.MAGENTA,Color.WHITE);break;
+            case 5: inputToChoose(); createFlowerColor(Color.MEDIUMVIOLETRED,Color.RED,Color.YELLOW);break;
         }
     }
 
@@ -237,7 +260,7 @@ public class ActionFlowers implements Command {
         ellipse2.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent me) {
-                        colorGlobal = (Color) ellipse1.getFill();
+                        colorGlobal = (Color) ellipse2.getFill();
                         finalLabelDays.setText("  <- Color = 2");
                     }
                 });
@@ -245,10 +268,47 @@ public class ActionFlowers implements Command {
         ellipse3.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent me) {
-                        colorGlobal = (Color) ellipse1.getFill();
+                        colorGlobal = (Color) ellipse3.getFill();
                         finalLabelDays.setText("  <- Color = 3");
                     }
                 });
         StartMenu.pane.getChildren().add(finalLabelDays);
+    }
+
+    public void confirmingCreation()
+    {
+        if( StartMenu.pane.getChildren().get(StartMenu.pane.getChildren().size()-1).getClass().getName()
+                == "javafx.scene.text.Text") {
+            StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size() - 1);
+        }
+
+        if(len != 0 && day !=0 && colorGlobal != null){
+            for (int i =0; i<9; i++) {
+                StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size() - 1);
+            }
+            switch (createNumber){
+                case 1: flowers.add(new Rose(len,day,colorGlobal));break;
+                case 2: flowers.add(new Chrysanthemum(len,day,colorGlobal));break;
+                case 3: flowers.add(new Lily(len,day,colorGlobal));break;
+                case 4: flowers.add(new Orchid(len,day,colorGlobal));break;
+                case 5: flowers.add(new Tulip(len,day,colorGlobal));break;
+            }
+            Text finishToString = new StartMenu().textConstructor(flowers.get(flowers.size()-1).toString(),
+                    1,2,280.0,210.0);
+            finishToString.setStyle("-fx-font-size: 14px;");
+            Ellipse finalEllipse = flowers.get(flowers.size()-1).getColor(290);
+
+            Text lastCreation = new StartMenu().textConstructor("Created flower :",1,2,170.0,395.0);
+            lastCreation.setStyle("-fx-font-size: 18px;");
+
+            StartMenu.pane.getChildren().add(finishToString);
+            StartMenu.pane.getChildren().add(finalEllipse);
+            StartMenu.pane.getChildren().add(lastCreation);
+        }
+        else{
+            Text notCorrectParameters = new StartMenu().textConstructor("Incorrect parameters or\n nothing were selected",1,2,210.0,235.0);
+            notCorrectParameters.setFill(Color.RED);
+            StartMenu.pane.getChildren().add(notCorrectParameters);
+        }
     }
 }
