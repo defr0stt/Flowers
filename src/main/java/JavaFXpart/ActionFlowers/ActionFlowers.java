@@ -6,11 +6,14 @@ import JavaFXpart.Flowers.Chrysanthemum;
 import JavaFXpart.Receiver.Command;
 import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -70,6 +73,7 @@ public class ActionFlowers implements Command {
 
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
                 new Node[]{backImageView1, backImageView2, backImageView3, backImageView4});
+
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
         return StartMenu.pane;
     }
@@ -151,10 +155,100 @@ public class ActionFlowers implements Command {
         if( StartMenu.pane.getChildren().get(StartMenu.pane.getChildren().size()-1).getClass().getName()
                 != "javafx.scene.control.RadioButton") {
             StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
+            StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
+            StartMenu.pane.getChildren().remove(StartMenu.pane.getChildren().size()-1);
         }
         switch (i){
-//            case 1: StartMenu.pane.getChildren().add(new StartMenu().textConstructor("Flower list",1,2,80.0,500.0));break;
-//            case 2: StartMenu.pane.getChildren().add(new StartMenu().textConstructor("Flower list",1,2,80.0,600.0));break;
+            case 1: inputToChoose(); createFlowerColor(Color.RED,Color.PINK,Color.WHITE);break;
+            case 2: inputToChoose();createFlowerColor(Color.CRIMSON,Color.YELLOW,Color.MEDIUMPURPLE);break;
+            case 3: inputToChoose();createFlowerColor(Color.ORANGE,Color.YELLOW,Color.WHITE);break;
+            case 4: inputToChoose();createFlowerColor(Color.MEDIUMVIOLETRED,Color.MAGENTA,Color.WHITE);break;
+            case 5: inputToChoose();createFlowerColor(Color.MEDIUMVIOLETRED,Color.RED,Color.YELLOW);break;
         }
+    }
+
+    int len, day;
+    public void inputToChoose()
+    {
+        Slider sliderLength = new Slider(0,100,0);
+        sliderLength.setSnapToTicks(true);
+        sliderLength.setShowTickMarks(true);
+        sliderLength.setShowTickLabels(true);
+
+        Slider sliderDays = new Slider(0,15,0);
+        sliderDays.setSnapToTicks(true);
+        sliderDays.setShowTickMarks(true);
+        sliderDays.setShowTickLabels(true);
+        sliderDays.setMinorTickCount(5);
+        sliderDays.setMajorTickUnit(5);
+
+
+        Label labelLength = new Label("  <- Length = " + sliderLength.getValue(),sliderLength);
+        labelLength = (Label) new StartMenu().positionDetermination(labelLength,1,2,350.0,370.0);
+
+        Label labelDays = new Label("  <- Days = " + sliderDays.getValue(),sliderDays);
+        labelDays = (Label) new StartMenu().positionDetermination(labelDays,1,2,395.0,370.0);
+
+        Label finalLabelLength = labelLength;
+        sliderLength.valueProperty().addListener(new ChangeListener<Number>(){
+            public void changed(ObservableValue<? extends Number> changed, Number oldValue, Number newValue){
+                len = newValue.intValue();
+                finalLabelLength.setText("  <- Length = " + len);
+            }
+        });
+
+        Label finalLabelDays = labelDays;
+        sliderDays.valueProperty().addListener(new ChangeListener<Number>(){
+            public void changed(ObservableValue<? extends Number> changed, Number oldValue, Number newValue){
+                day = newValue.intValue();
+                finalLabelDays.setText("  <- Days = " + day);
+            }
+        });
+
+        StartMenu.pane.getChildren().add(finalLabelLength);
+        StartMenu.pane.getChildren().add(finalLabelDays);
+    }
+
+    Color colorGlobal;
+    public void createFlowerColor(Color a, Color b, Color c)
+    {
+        Ellipse ellipse1 = new StartMenu().ellipseConstructor(370,325,10,10,a,Color.BLACK,1);
+        Ellipse ellipse2 = new StartMenu().ellipseConstructor(395,325,10,10,b,Color.BLACK,1);
+        Ellipse ellipse3 = new StartMenu().ellipseConstructor(420,325,10,10,c,Color.BLACK,1);
+
+        Group group = new Group();
+        group.getChildren().add(ellipse1);
+        group.getChildren().add(ellipse2);
+        group.getChildren().add(ellipse3);
+
+        Label ellipseLabel = new Label("  <- Colors",group);
+        ellipseLabel = (Label) new StartMenu().positionDetermination(ellipseLabel,1,2,310.0,375.0);
+
+        Label finalLabelDays = ellipseLabel;
+
+        ellipse1.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent me) {
+                        colorGlobal = (Color) ellipse1.getFill();
+                        finalLabelDays.setText("  <- Color = 1");
+                    }
+                });
+
+        ellipse2.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent me) {
+                        colorGlobal = (Color) ellipse1.getFill();
+                        finalLabelDays.setText("  <- Color = 2");
+                    }
+                });
+
+        ellipse3.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent me) {
+                        colorGlobal = (Color) ellipse1.getFill();
+                        finalLabelDays.setText("  <- Color = 3");
+                    }
+                });
+        StartMenu.pane.getChildren().add(finalLabelDays);
     }
 }
