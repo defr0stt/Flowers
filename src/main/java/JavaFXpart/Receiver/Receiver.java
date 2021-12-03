@@ -19,7 +19,7 @@ public class Receiver {
     {
         switch (i){
             case 1: a.createFlower();break;
-//            case 2: a.delete();break;
+            case 2: a.deleteFlower();break;
             case 3: a.flowerList();break;
 //            case 4: a.create_b();break;
 //            case 5: a.changePar();break;

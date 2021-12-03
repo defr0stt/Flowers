@@ -6,6 +6,8 @@ import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -30,10 +32,12 @@ public class ActionFlowers implements Command {
     @Override
     public void execute()
     {
-        Button flowerList = new StartMenu().buttonConstructor("Flower list","Detailed information about the created flowers",1,2,335.0,425.0);
-        flowerList.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),3);});
-        Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,275.0,417.0);
+        Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,215.0,417.0);
         createFlower.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),1);});
+        Button deleteFlower = new StartMenu().buttonConstructor("Delete flower","The process of deleting flowers",1,2,255.0,417.0);
+        deleteFlower.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),2);});
+        Button flowerList = new StartMenu().buttonConstructor("Flower list","Detailed information about the created flowers",1,2,295.0,425.0);
+        flowerList.setOnAction(actionEvent -> {new Receiver().variation(new ActionFlowers(),3);});
         Button mainMenu = new StartMenu().buttonConstructor("Main menu","Back 'Main menu'",1,2,375.0,422.0);
         mainMenu.setOnAction(actionEvent -> {
             try {
@@ -44,7 +48,7 @@ public class ActionFlowers implements Command {
 
         StartMenu.pane = flowerMenuView();
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{flowerList, createFlower, mainMenu});
+                new Node[]{createFlower, deleteFlower, flowerList , mainMenu});
     }
 
     public Pane flowerMenuView()
@@ -84,49 +88,6 @@ public class ActionFlowers implements Command {
     }
 
     // ===========================================================================================================
-    //                                             List of flowers part
-    // ===========================================================================================================
-
-    public void flowerList()    //todo max = 10 flowers - if more the text overlaps on buttons
-    {
-        Text welcomeFlowerList = new StartMenu().textConstructor("Flower list",1,2,80.0,400.0);
-        welcomeFlowerList.setStyle("-fx-font-size: 24px;");
-
-        StartMenu.pane = flowerMenuView();
-
-        if(!flowers.isEmpty()) {
-            Double topBottom = 160.0;
-            for (FlowerTemplate a : flowers) {
-                Text example = new StartMenu().textConstructor(a.toString(), 1, 2, topBottom, 245.0);
-                example.setStyle("-fx-font-size: 14px;");
-                Ellipse ellipseExample = a.getColor(topBottom + 10);
-                StartMenu.pane.getChildren().add(example);
-                StartMenu.pane.getChildren().add(ellipseExample);
-                topBottom += 25;
-            }
-        }
-        else {
-            Text example = new StartMenu().textConstructor("There are no created flowers", 1, 2, 230.0, 360.0);
-            example.setStyle("-fx-font-size: 16px;");
-            StartMenu.pane.getChildren().add(example);
-        }
-
-        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,440.0,422.0);
-        backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
-        Button backToMainMenu = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,485.0,425.0);
-        backToMainMenu.setOnAction(actionEvent -> {
-            try {
-                new StartMenu().start(StartMenu.defaultStage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }});
-
-        StartMenu.pane.getChildren().add(welcomeFlowerList);
-        StartMenu.pane.getChildren().add(backToFlower);
-        StartMenu.pane.getChildren().add(backToMainMenu);
-    }
-
-    // ===========================================================================================================
     //                                             Creating flower part
     // ===========================================================================================================
 
@@ -157,7 +118,7 @@ public class ActionFlowers implements Command {
 
         Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower creation",1,2,455.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmingCreation();});
-        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,428.0);
+        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
 
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
@@ -165,7 +126,7 @@ public class ActionFlowers implements Command {
     }
 
     int createNumber;
-    public void chooseFlowerToCreate(int i)     // todo add some cases
+    public void chooseFlowerToCreate(int i)
     {
         createNumber = i;
         if( StartMenu.pane.getChildren().get(StartMenu.pane.getChildren().size()-1).getClass().getName()
@@ -310,5 +271,123 @@ public class ActionFlowers implements Command {
             notCorrectParameters.setFill(Color.RED);
             StartMenu.pane.getChildren().add(notCorrectParameters);
         }
+    }
+
+    // ===========================================================================================================
+    //                                            Deleting flowers part
+    // ===========================================================================================================
+
+    FlowerTemplate flowerToDelete;
+    ObservableList<FlowerTemplate> deleteList = FXCollections.observableArrayList(flowers);
+    ChoiceBox<FlowerTemplate> deleteChoiceBox = new ChoiceBox<FlowerTemplate>(deleteList);
+    Button buttonDelete;
+    public void deleteFlower()
+    {
+        Text welcomeDeleteFlower = new StartMenu().textConstructor("Deleting a flower",1,2,80.0,370.0);
+        welcomeDeleteFlower.setStyle("-fx-font-size: 24px;");
+
+        StartMenu.pane = flowerMenuView();
+        StartMenu.pane.getChildren().add(welcomeDeleteFlower);
+        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,455.0,425.0);
+        confirmButton.setOnAction(actionEvent -> {confirmDeleting();});
+        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
+        backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
+
+        buttonDelete = confirmButton;
+        StartMenu.pane.getChildren().add(backToFlower);
+        StartMenu.pane.getChildren().add(confirmButton);
+
+        if(!flowers.isEmpty()) {
+
+            deleteChoiceBox = (ChoiceBox<FlowerTemplate>) new StartMenu().positionDetermination(deleteChoiceBox,1,2,150.0,280.0);
+            StartMenu.pane.getChildren().add(deleteChoiceBox);
+
+            Text deleteText = new StartMenu().textConstructor("",
+                    1,2,280.0,210.0);
+            deleteText.setStyle("-fx-font-size: 14px;");
+            ChoiceBox<FlowerTemplate> finalDeleteChoiceBox = deleteChoiceBox;
+            deleteChoiceBox.setOnAction(event -> { deleteText.setText(finalDeleteChoiceBox.getValue().toString());
+                                                   flowerToDelete = finalDeleteChoiceBox.getValue();
+                                                   StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(290));
+                                                   System.out.println(StartMenu.pane.getChildren().size());
+                                                    });
+            StartMenu.pane.getChildren().add(deleteText);
+            System.out.println(StartMenu.pane.getChildren().size());
+
+        }
+        else {
+            Text example = new StartMenu().textConstructor("There are no flowers to delete", 1, 2, 230.0, 360.0);
+            example.setStyle("-fx-font-size: 16px;");
+            StartMenu.pane.getChildren().remove(buttonDelete);
+            StartMenu.pane.getChildren().add(example);
+        }
+    }
+
+    Text notCorrectParameters;
+    public void confirmDeleting()
+    {
+        if( notCorrectParameters != null && flowerToDelete == null) {
+            StartMenu.pane.getChildren().remove(notCorrectParameters);
+        }
+
+        if(flowerToDelete != null){
+            if(notCorrectParameters != null)    StartMenu.pane.getChildren().remove(notCorrectParameters);
+            StartMenu.pane.getChildren().remove(deleteChoiceBox);
+            StartMenu.pane.getChildren().remove(buttonDelete);
+
+            Text lastCreation = new StartMenu().textConstructor("\n\nThe flower :\n\n\n\n\nwas deleted",1,2,170.0,395.0);
+            lastCreation.setStyle("-fx-font-size: 18px;");
+
+            StartMenu.pane.getChildren().add(lastCreation);
+            flowers.remove(flowerToDelete);
+        }
+        else{
+            notCorrectParameters = new StartMenu().textConstructor("No flower was selected",1,2,210.0,395.0);
+            notCorrectParameters.setFill(Color.RED);
+            StartMenu.pane.getChildren().add(notCorrectParameters);
+        }
+    }
+
+    // ===========================================================================================================
+    //                                             List of flowers part
+    // ===========================================================================================================
+
+    public void flowerList()
+    {
+        Text welcomeFlowerList = new StartMenu().textConstructor("Flower list",1,2,80.0,400.0);
+        welcomeFlowerList.setStyle("-fx-font-size: 24px;");
+
+        StartMenu.pane = flowerMenuView();
+
+        if(!flowers.isEmpty()) {
+            Double topBottom = 160.0;
+            for (FlowerTemplate a : flowers) {
+                Text example = new StartMenu().textConstructor(a.toString(), 1, 2, topBottom, 245.0);
+                example.setStyle("-fx-font-size: 14px;");
+                Ellipse ellipseExample = a.getColor(topBottom + 10);
+                StartMenu.pane.getChildren().add(example);
+                StartMenu.pane.getChildren().add(ellipseExample);
+                topBottom += 25;
+            }
+        }
+        else {
+            Text example = new StartMenu().textConstructor("There are no created flowers", 1, 2, 230.0, 360.0);
+            example.setStyle("-fx-font-size: 16px;");
+            StartMenu.pane.getChildren().add(example);
+        }
+
+        Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,440.0,422.0);
+        backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
+        Button backToMainMenu = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,485.0,425.0);
+        backToMainMenu.setOnAction(actionEvent -> {
+            try {
+                new StartMenu().start(StartMenu.defaultStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }});
+
+        StartMenu.pane.getChildren().add(welcomeFlowerList);
+        StartMenu.pane.getChildren().add(backToFlower);
+        StartMenu.pane.getChildren().add(backToMainMenu);
     }
 }
