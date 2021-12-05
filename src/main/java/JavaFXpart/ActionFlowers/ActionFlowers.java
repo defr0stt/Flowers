@@ -29,7 +29,7 @@ public class ActionFlowers implements Command {
         deleteFlower.setOnAction(actionEvent -> {new Receiver().variation(2);});
         Button flowerList = new StartMenu().buttonConstructor("Flower list","Detailed information about the created flowers",1,2,265.0,425.0);
         flowerList.setOnAction(actionEvent -> {new Receiver().variation(3);});
-        Button changeFlower = new StartMenu().buttonConstructor("Change flower","The process of deleting flowers parameters",1,2,305.0,413.0);
+        Button changeFlower = new StartMenu().buttonConstructor("Change flower\n  parameters","The process of deleting flowers parameters",1,2,305.0,413.0);
         changeFlower.setOnAction(actionEvent -> {new Receiver().variation(4);});
         Button mainMenu = new StartMenu().buttonConstructor("Main menu","Back 'Main menu'",1,2,375.0,422.0);
         mainMenu.setOnAction(actionEvent -> {
