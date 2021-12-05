@@ -80,7 +80,7 @@ public class ChangeParameters
                 StartMenu.pane.getChildren().remove(notCorrectParameters);
         }
 
-        if(flowerToChange != null){         //todo
+        if(flowerToChange != null){
             insertParameters();
             if(paramText == null) {
                 if (notCorrectParameters != null) StartMenu.pane.getChildren().remove(notCorrectParameters);
