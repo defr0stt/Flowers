@@ -27,6 +27,6 @@ public class FlowerTemplate
 
     @Override
     public String toString() {
-        return getName() + " : value = " + getValue() + "$, length = " + getLen() + "sm, freshness = " + getDays() + "days";
+        return getName() + " : value = " + getValue() + "$, length = " + getLen() + " sm, freshness = " + getDays() + " days";
     }
 }
