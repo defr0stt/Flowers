@@ -1,10 +1,7 @@
 package JavaFXpart.Receiver;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
-import JavaFXpart.ActionFlowers.Actions.ChangeParameters;
-import JavaFXpart.ActionFlowers.Actions.CreateFlower;
-import JavaFXpart.ActionFlowers.Actions.DeletingFlowers;
-import JavaFXpart.ActionFlowers.Actions.FlowerList;
+import JavaFXpart.ActionFlowers.Actions.*;
 import JavaFXpart.Additional.Additional;
 
 public class Receiver {
@@ -26,7 +23,7 @@ public class Receiver {
             case 2: new DeletingFlowers().deleteFlower();break;
             case 3: new FlowerList().flowerList();break;
             case 4: new ChangeParameters().changeFlowerParameters();break;
-//            case 5: a.changePar();break;
+            case 5: new CreateBouquet().createBouquet();break;
         }
     }
 }

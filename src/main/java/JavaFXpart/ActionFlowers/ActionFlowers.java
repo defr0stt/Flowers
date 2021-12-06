@@ -23,15 +23,17 @@ public class ActionFlowers implements Command {
     @Override
     public void execute()
     {
-        Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,185.0,417.0);
+        Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,165.0,417.0);
         createFlower.setOnAction(actionEvent -> {new Receiver().variation(1);});
-        Button deleteFlower = new StartMenu().buttonConstructor("Delete flower","The process of deleting flowers",1,2,225.0,417.0);
+        Button deleteFlower = new StartMenu().buttonConstructor("Delete flower","The process of deleting flowers",1,2,205.0,417.0);
         deleteFlower.setOnAction(actionEvent -> {new Receiver().variation(2);});
-        Button flowerList = new StartMenu().buttonConstructor("Flower list","Detailed information about the created flowers",1,2,265.0,425.0);
+        Button flowerList = new StartMenu().buttonConstructor("Flower list","Detailed information about the created flowers",1,2,245.0,425.0);
         flowerList.setOnAction(actionEvent -> {new Receiver().variation(3);});
-        Button changeFlower = new StartMenu().buttonConstructor("Change flower\n  parameters","The process of deleting flowers parameters",1,2,305.0,413.0);
+        Button changeFlower = new StartMenu().buttonConstructor("Change flower\n  parameters","The process of deleting flowers parameters",1,2,285.0,413.0);
         changeFlower.setOnAction(actionEvent -> {new Receiver().variation(4);});
-        Button mainMenu = new StartMenu().buttonConstructor("Main menu","Back 'Main menu'",1,2,375.0,422.0);
+        Button createBouquet = new StartMenu().buttonConstructor("Create bouquet","Creating bouquet of created flowers",1,2,345.0,410.0);
+        createBouquet.setOnAction(actionEvent -> {new Receiver().variation(5);});
+        Button mainMenu = new StartMenu().buttonConstructor("Main menu","Back 'Main menu'",1,2,385.0,422.0);
         mainMenu.setOnAction(actionEvent -> {
             try {
                 new StartMenu().start(StartMenu.defaultStage);
@@ -41,7 +43,7 @@ public class ActionFlowers implements Command {
 
         StartMenu.pane = flowerMenuView();
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
-                new Node[]{createFlower, deleteFlower, flowerList, changeFlower, mainMenu});
+                new Node[]{createFlower, deleteFlower, flowerList, changeFlower, createBouquet, mainMenu});
     }
 
     public Pane flowerMenuView()
