@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
-
-import java.io.IOException;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
 
@@ -24,7 +21,7 @@ public class FlowerList
     FlowerTemplate flowerListObject;
     ObservableList<FlowerTemplate> flowerList = FXCollections.observableArrayList(flowers);
     ChoiceBox<FlowerTemplate> changeChoiceBox = new ChoiceBox<FlowerTemplate>(flowerList);
-    public void flowerList()    //todo to finish flower list in normal view
+    public void flowerList()
     {
         Text welcomeFlowerList = new StartMenu().textConstructor("Flower list",1,2,80.0,400.0);
         welcomeFlowerList.setStyle("-fx-font-size: 24px;");
