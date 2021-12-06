@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
@@ -23,6 +24,9 @@ public class DeletingFlowers
     ObservableList<FlowerTemplate> deleteList = FXCollections.observableArrayList(flowers);
     ChoiceBox<FlowerTemplate> deleteChoiceBox = new ChoiceBox<FlowerTemplate>(deleteList);
     Button buttonDelete;
+    Button deleteAll;
+    Ellipse colorEllipse;
+    Text deleteText;
     public void deleteFlower()
     {
         Text welcomeDeleteFlower = new StartMenu().textConstructor("Deleting a flower",1,2,80.0,370.0);
@@ -30,12 +34,16 @@ public class DeletingFlowers
 
         StartMenu.pane = new ActionFlowers().flowerMenuView();
         StartMenu.pane.getChildren().add(welcomeDeleteFlower);
-        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,455.0,425.0);
+        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,415.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmDeleting();});
+        Button delAll = new StartMenu().buttonConstructor("Delete all flowers","Delete all created flowers",1,2,455.0,400.0);
+        delAll.setOnAction(actionEvent -> {clearAll();});
         Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
 
         buttonDelete = confirmButton;
+        deleteAll = delAll;
+        StartMenu.pane.getChildren().add(delAll);
         StartMenu.pane.getChildren().add(backToFlower);
         StartMenu.pane.getChildren().add(confirmButton);
 
@@ -44,13 +52,14 @@ public class DeletingFlowers
             deleteChoiceBox = (ChoiceBox<FlowerTemplate>) new StartMenu().positionDetermination(deleteChoiceBox,1,2,150.0,280.0);
             StartMenu.pane.getChildren().add(deleteChoiceBox);
 
-            Text deleteText = new StartMenu().textConstructor("",
+            deleteText = new StartMenu().textConstructor("",
                     1,2,280.0,210.0);
             deleteText.setStyle("-fx-font-size: 14px;");
             ChoiceBox<FlowerTemplate> finalDeleteChoiceBox = deleteChoiceBox;
             deleteChoiceBox.setOnAction(event -> { deleteText.setText(finalDeleteChoiceBox.getValue().toString());
                 flowerToDelete = finalDeleteChoiceBox.getValue();
-                StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(290));
+                colorEllipse = finalDeleteChoiceBox.getValue().getColor(290);
+                StartMenu.pane.getChildren().add(colorEllipse);
                 if( notCorrectParameters != null) {
                     if(StartMenu.pane.getChildren().contains(notCorrectParameters))
                         StartMenu.pane.getChildren().remove(notCorrectParameters);
@@ -62,6 +71,7 @@ public class DeletingFlowers
             Text example = new StartMenu().textConstructor("There are no flowers to delete", 1, 2, 230.0, 360.0);
             example.setStyle("-fx-font-size: 16px;");
             StartMenu.pane.getChildren().remove(buttonDelete);
+            StartMenu.pane.getChildren().remove(deleteAll);
             StartMenu.pane.getChildren().add(example);
         }
     }
@@ -89,5 +99,26 @@ public class DeletingFlowers
             notCorrectParameters.setFill(Color.RED);
             StartMenu.pane.getChildren().add(notCorrectParameters);
         }
+    }
+
+    public void clearAll()
+    {
+        if( notCorrectParameters != null && StartMenu.pane.getChildren().contains(notCorrectParameters)) {
+            StartMenu.pane.getChildren().remove(notCorrectParameters);
+        }
+        if (deleteText != null && colorEllipse != null && StartMenu.pane.getChildren().contains(deleteText) &&
+                StartMenu.pane.getChildren().contains(colorEllipse)){
+            StartMenu.pane.getChildren().remove(deleteText);
+            StartMenu.pane.getChildren().remove(colorEllipse);
+        }
+        StartMenu.pane.getChildren().remove(deleteChoiceBox);
+        StartMenu.pane.getChildren().remove(buttonDelete);
+        StartMenu.pane.getChildren().remove(deleteAll);
+
+        Text lastCreation = new StartMenu().textConstructor("All flowers deleted",1,2,270.0,375.0);
+        lastCreation.setStyle("-fx-font-size: 18px;");
+
+        StartMenu.pane.getChildren().add(lastCreation);
+        flowers.clear();
     }
 }
