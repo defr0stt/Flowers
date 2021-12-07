@@ -159,6 +159,12 @@ public class StartMenu extends Application {
         return anchorPane;
     }
 
+    public Pane deleteElements(AnchorPane anchorPane, Node[] obj)
+    {
+        for (Node a: obj) anchorPane.getChildren().remove(a);
+        return anchorPane;
+    }
+
     public Ellipse ellipseConstructor(double v1, double v2, double v3, double v4, Color fill, Color width, double strokeWidth)
     {
         Ellipse ellipseExample = new Ellipse(v1,v2,v3,v4);
