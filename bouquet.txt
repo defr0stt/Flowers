@@ -1,7 +1,13 @@
-qwerty
-lol
-qweqweqwerty
-lol
-qweqweqwerty
-lol
-qweqwe
+
+Bouquet (sorted by days) :
+
+ [ Chrys - 6 days ]
+
+Flowers in range ( min = 0; max = 3 ) :
+
+There are no flowers in this range
+Flowers :
+
+	Chrysanthemum - 1 flower(s) - 20$
+
+Total sum : 25 $
