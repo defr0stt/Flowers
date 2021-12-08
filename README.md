@@ -59,3 +59,21 @@ which can lead to ```FileNotFoundException```. Start menu of my program has the 
 
 In the left bottom corner program has an animation of blinking image. There are 2 buttons which help you to move from
 one menu item to another and 1 button to close this program.
+
+ - **_authorPlusImagePulsing(Text text)_** it's a default view of my scene with blinking image, author's signature
+and text on the top of the scene.
+ - **_sceneStarter (Pane pane, Stage stage)_** it's a process of scene creation in the start stage without creating new
+windows.
+ - **_buttonConstructor(...)_** , **_textConstructor(...)_** , **_imageConstructor(...)_** , **_ellipseConstructor(...)_** 
+are created for useful creating of the objects like text, ellipse etc.
+ - **_sumAllElements(AnchorPane anchorPane, Node[] obj)_** , **_deleteElements(AnchorPane anchorPane, Node[] obj)_** 
+are created for adding or deleting objects from the scene.
+ - **_positionDetermination(...)_** created for determinating position of the objects on the screen.
+
+## > Flower menu
+
+This menu intended for actions with flowers like creating, deleteng flowers, displaying list of created flowers,
+changing flower parameters and creating bouquet of created flowers. To do this actions there are some buttons.
+
+![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower1.PNG)
+
