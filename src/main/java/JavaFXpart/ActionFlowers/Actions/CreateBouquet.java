@@ -1,15 +1,26 @@
 package JavaFXpart.ActionFlowers.Actions;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
+import JavaFXpart.Additional.Additional;
+import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import static JavaFXpart.Additional.Additional.iFile;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
 
@@ -106,7 +117,7 @@ public class CreateBouquet
     Text incorrect;
     public void confirmProcess()
     {
-        if( (min != 0 && max != 0 && min<max) && (radioButtonGroup.getSelectedToggle() != null) ){
+        if( ( max != 0 && min<=max) && (radioButtonGroup.getSelectedToggle() != null) ){
             RadioButton a = (RadioButton) radioButtonGroup.getSelectedToggle();
             if(a.getText().equals("YES")) pack = 1;
             else pack = 0;
@@ -121,11 +132,143 @@ public class CreateBouquet
         }
     }
 
+    List<FlowerTemplate> copyArray = new ArrayList();
+    ObservableList<FlowerTemplate> bouquetList;
+    ChoiceBox<FlowerTemplate> rangeChoiceBox;
     int pack;
+    Ellipse ellipseBouquet;
+    String inFile;
     public void creatingProcess()
     {
+        sorting();
         new StartMenu().deleteElements((AnchorPane) StartMenu.pane,
                 new Node[]{confirmButton,labelMin,labelMax,rangeText,buttonYES,buttonNO,packaging});
         if(incorrect != null)   StartMenu.pane.getChildren().remove(incorrect);
+
+        String bouquetInfo = flowers.toString();
+        bouquetInfo += "Colors : \n\n";
+
+        inFile = flowers.toString();
+
+        int heightCoefficient = (flowers.size()-1) / 5;
+        int counter = 0;
+        int width = 285;
+        int height = 210 + (16*heightCoefficient) ;
+        for (FlowerTemplate a : flowers)
+        {
+             StartMenu.pane.getChildren().add(flowers.get(counter).getColor(width, height));
+             width += 25;
+            if(++counter % 10 == 0){
+                height += 25;
+                width = 285;
+                bouquetInfo += "\n\n";
+            }
+        }
+
+        bouquetInfo += "Flowers in range ( min = " + min +"; max = " + max + " ) :\n\n";
+        inFile += "Flowers in range ( min = " + min +"; max = " + max + " ) :\n\n";
+        int rangeCheck = 0;
+        for (FlowerTemplate a : flowers) {
+            if( a.getLen() >= min && a.getLen() <= max ){
+                inFile += a.toString() + " Color : " + a.getColor(0,0).getFill() + "\n";
+                copyArray.add(a);
+                rangeCheck++;
+            }
+        }
+        if(rangeCheck == 0){
+            bouquetInfo += "There are no flowers in this range\n";
+            inFile += "There are no flowers in this range";
+        }
+        else{
+            height += 60;
+            bouquetList = FXCollections.observableArrayList(copyArray);
+            rangeChoiceBox = new ChoiceBox<FlowerTemplate>(bouquetList);
+            rangeChoiceBox = (ChoiceBox<FlowerTemplate>) new StartMenu().positionDetermination(rangeChoiceBox,1,2, Double.valueOf(height),260.0);
+
+            int finalHeight = height;
+            rangeChoiceBox.setOnAction(event -> {
+                if( ellipseBouquet != null) {
+                    if(StartMenu.pane.getChildren().contains(ellipseBouquet))
+                        StartMenu.pane.getChildren().remove(ellipseBouquet);
+                }
+                ellipseBouquet = rangeChoiceBox.getValue().getColor(670,Double.valueOf(finalHeight+12));
+                StartMenu.pane.getChildren().add(ellipseBouquet);
+            });
+        }
+
+        Map<Integer,String> funcResult = flowersInBouquet();
+        bouquetInfo += "\n\n" + funcResult.get(sum);
+        inFile += funcResult.get(sum);
+        new Additional().inFile("");
+        new Additional().inFile(inFile);
+        iFile=1;
+
+        Text bouquet = new StartMenu().textConstructor(bouquetInfo,1,2,120.0,215.0);
+        StartMenu.pane.getChildren().add(bouquet);
+        if(bouquetList != null) StartMenu.pane.getChildren().add(rangeChoiceBox);
+    }
+
+    public void sorting()   // selection sort (max elem goes last place in array)
+    {
+        int flowerSize = flowers.size();
+        while (flowerSize>0)
+        {
+            int max = flowers.get(0).getDays(), i = 0, index=0;
+            while(i!=flowerSize) {
+                if(max < flowers.get(i).getDays()) {
+                    max = flowers.get(i).getDays();
+                    index = i;
+                }
+                i++;
+            }
+            if(index != flowerSize-1)   // if the max elem is not the last in array
+            {
+                FlowerTemplate temp = flowers.get(flowerSize-1);
+                flowers.set(flowerSize-1,flowers.get(index));
+                flowers.set(index,temp);
+            }
+            flowerSize--;
+        }
+    }
+
+    int sum = 0;
+    public Map<Integer,String> flowersInBouquet()
+    {
+        int counter = 1, money=0;
+        String forFile = "\nFlowers :\n\n";
+        Map<Integer, String> result = new HashMap<>();
+
+        int[] array = new int [5];
+        for (FlowerTemplate obj : flowers){
+            if(obj.getName().equals("Rose"))                  array[0] ++;
+            else if(obj.getName().equals("Chrysanthemum"))    array[1] ++;
+            else if(obj.getName().equals("Lily"))             array[2] ++;
+            else if(obj.getName().equals("Tulip"))            array[3] ++;
+            else if(obj.getName().equals("Orchid"))           array[4] ++;
+        }
+
+        for (int a:array) {
+            if(a!=0) {
+                switch (counter) {
+                    case 1: money = 10*a;
+                            forFile += "\tRose - " + a + " flower(s) - "+money+"$\n"; break;
+                    case 2: money = 20*a;
+                            forFile += "\tChrysanthemum - " + a + " flower(s) - "+money+"$\n"; break;
+                    case 3: money = 10*a;
+                            forFile += "\tLily - " + a + " flower(s) - "+money+"$\n"; break;
+                    case 4: money = 15*a;
+                            forFile += "\tOrchid - " + a + " flower(s) - "+money+"$\n"; break;
+                    case 5: money = 15*a;
+                            forFile += "\tTulip - " + a + " flower(s) - "+money+"$\n"; break;
+                }
+                sum += money;
+            }
+            counter++;
+        }
+        if(pack == 1) sum += 5;
+        forFile += "\nTotal sum : " + sum + " $";
+
+        result.put(sum,forFile);
+        return result;
     }
 }
