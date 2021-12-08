@@ -6,8 +6,10 @@ import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
@@ -58,7 +60,7 @@ public class DeletingFlowers
             ChoiceBox<FlowerTemplate> finalDeleteChoiceBox = deleteChoiceBox;
             deleteChoiceBox.setOnAction(event -> { deleteText.setText(finalDeleteChoiceBox.getValue().toString());
                 flowerToDelete = finalDeleteChoiceBox.getValue();
-                colorEllipse = finalDeleteChoiceBox.getValue().getColor(290);
+                colorEllipse = finalDeleteChoiceBox.getValue().getColor(670,290);
                 StartMenu.pane.getChildren().add(colorEllipse);
                 if( notCorrectParameters != null) {
                     if(StartMenu.pane.getChildren().contains(notCorrectParameters))
@@ -85,8 +87,7 @@ public class DeletingFlowers
 
         if(flowerToDelete != null){
             if(notCorrectParameters != null)    StartMenu.pane.getChildren().remove(notCorrectParameters);
-            StartMenu.pane.getChildren().remove(deleteChoiceBox);
-            StartMenu.pane.getChildren().remove(buttonDelete);
+            new StartMenu().deleteElements((AnchorPane) StartMenu.pane, new Node[]{deleteChoiceBox,buttonDelete,deleteAll});
 
             Text lastCreation = new StartMenu().textConstructor("\n\nThe flower :\n\n\n\n\nwas deleted",1,2,170.0,395.0);
             lastCreation.setStyle("-fx-font-size: 18px;");
@@ -111,9 +112,7 @@ public class DeletingFlowers
             StartMenu.pane.getChildren().remove(deleteText);
             StartMenu.pane.getChildren().remove(colorEllipse);
         }
-        StartMenu.pane.getChildren().remove(deleteChoiceBox);
-        StartMenu.pane.getChildren().remove(buttonDelete);
-        StartMenu.pane.getChildren().remove(deleteAll);
+        new StartMenu().deleteElements((AnchorPane) StartMenu.pane, new Node[]{deleteChoiceBox,buttonDelete,deleteAll});
 
         Text lastCreation = new StartMenu().textConstructor("All flowers deleted",1,2,270.0,375.0);
         lastCreation.setStyle("-fx-font-size: 18px;");

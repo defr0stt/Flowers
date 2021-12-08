@@ -38,7 +38,7 @@ public class FlowerList
             ChoiceBox<FlowerTemplate> finalDeleteChoiceBox = changeChoiceBox;
             changeChoiceBox.setOnAction(event -> { deleteText.setText(finalDeleteChoiceBox.getValue().toString());
                 flowerListObject = finalDeleteChoiceBox.getValue();
-                StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(290));
+                StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(670,290));
             });
             StartMenu.pane.getChildren().add(deleteText);
         }

@@ -188,7 +188,7 @@ public class CreateFlower
             Text finishToString = new StartMenu().textConstructor(flowers.get(flowers.size()-1).toString(),
                     1,2,280.0,210.0);
             finishToString.setStyle("-fx-font-size: 14px;");
-            Ellipse finalEllipse = flowers.get(flowers.size()-1).getColor(290);
+            Ellipse finalEllipse = flowers.get(flowers.size()-1).getColor(670,290);
 
             Text lastCreation = new StartMenu().textConstructor("Created flower :",1,2,170.0,395.0);
             lastCreation.setStyle("-fx-font-size: 18px;");

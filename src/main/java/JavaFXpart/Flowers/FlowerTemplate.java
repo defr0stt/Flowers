@@ -16,9 +16,9 @@ public class FlowerTemplate
     public int getValue(){return value;}
     public int getLen(){return len;}
     public int getDays(){return days;}
-    public Ellipse getColor(double height)
+    public Ellipse getColor(double width, double height)
     {
-        return new StartMenu().ellipseConstructor(670,height,10,10,color,Color.BLACK,1);
+        return new StartMenu().ellipseConstructor(width,height,10,10,color,Color.BLACK,1);    //670 - default width
     }
 
     public void setLen(int l){len = l;}

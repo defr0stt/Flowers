@@ -57,8 +57,8 @@ public class ChangeParameters
             ChoiceBox<FlowerTemplate> finalDeleteChoiceBox = changeChoiceBox;
             changeChoiceBox.setOnAction(event -> { changeText.setText(finalDeleteChoiceBox.getValue().toString());
                 flowerToChange = finalDeleteChoiceBox.getValue();
-                currentColor = finalDeleteChoiceBox.getValue().getColor(290);
-                StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(290));
+                currentColor = finalDeleteChoiceBox.getValue().getColor(670,290);
+                StartMenu.pane.getChildren().add(finalDeleteChoiceBox.getValue().getColor(670,290));
                 checkFunction();
                 buttonsToChange();
             });
@@ -95,7 +95,7 @@ public class ChangeParameters
                 changeText = new StartMenu().textConstructor(flowerToChange.toString(),
                         1, 2, 280.0, 210.0);
                 changeText.setStyle("-fx-font-size: 14px;");
-                currentColor = flowerToChange.getColor(290);
+                currentColor = flowerToChange.getColor(670,290);
 
                 StartMenu.pane.getChildren().add(changeText);
                 StartMenu.pane.getChildren().add(currentColor);
