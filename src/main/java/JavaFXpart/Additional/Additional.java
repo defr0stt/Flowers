@@ -115,17 +115,16 @@ public class Additional implements Command
         Text fileWelcome = new StartMenu().textConstructor("Reading data from file",1,2,80.0,340.0);
         fileWelcome.setStyle("-fx-font-size: 24px;");
 
-        Text fromFileText = new StartMenu().textConstructor(fileCapacity,1,2,140.0,425.0);
-        fromFileText.setStyle("-fx-font-size: 14px;");
+        Text fromFileText = new StartMenu().textConstructor(fileCapacity,1,2,120.0,425.0);
 
-        Button mainMenuButton = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,485.0,425.0);
+        Button mainMenuButton = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,485.0,705.0);
         mainMenuButton.setOnAction(actionEvent -> {
             try {
                 new StartMenu().start(StartMenu.defaultStage);
             } catch (IOException e) {
                 e.printStackTrace();
             }});
-        Button backToAdditional = new StartMenu().buttonConstructor("Additional menu","Back to 'Additional'",1,2,440.0,413.0);
+        Button backToAdditional = new StartMenu().buttonConstructor("Additional menu","Back to 'Additional'",1,2,440.0,693.0);
         backToAdditional.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
 
         StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane,
@@ -134,7 +133,7 @@ public class Additional implements Command
 
     }
 
-    static int i=1;
+    public static int iFile=1;
     public void inFile(String line)
     {
         File file1 = new File("bouquet.txt");
@@ -144,14 +143,14 @@ public class Additional implements Command
                 PrintWriter obj1 = new PrintWriter(file1);
                 obj1.write(line);              // writing an information
                 obj1.close();
-                i--;
+                iFile--;
             }
-            else if(file1.exists() && i==1)
+            else if(file1.exists() && iFile==1)
             {
                 PrintWriter obj1 = new PrintWriter(file1);
                 obj1.write("");              // writing an information
                 obj1.close();
-                i--;
+                iFile--;
             }
             else Files.write(Paths.get("bouquet.txt"), line.getBytes(), StandardOpenOption.APPEND);    // adding in existing file
         }
