@@ -18,7 +18,24 @@ import java.util.List;
 
 public class ActionFlowers implements Command {
 
-    public static List<FlowerTemplate> flowers = new ArrayList();
+    public static List<FlowerTemplate> flowers = new ArrayList()
+    {
+        @Override
+        public String toString()
+        {
+            int len = 0;
+            String temp = "\nBouquet (sorted by days) :\n\n [ ";
+            for(FlowerTemplate a: flowers) {
+                if (a.getName().equals("Chrysanthemum")) temp += "Chrys" + " - " + a.getDays()+" days";
+                else temp += a.getName() + " - " + a.getDays()+" days";
+                if(flowers.size() == ++len) break;
+                temp += ", ";
+                if(len % 5 == 0 ) temp += "\n   ";
+            }
+            temp += " ]\n\n";
+            return temp;
+        }
+    };
 
     @Override
     public void execute()
