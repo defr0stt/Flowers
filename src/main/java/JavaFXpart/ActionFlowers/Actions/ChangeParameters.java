@@ -296,6 +296,7 @@ public class ChangeParameters
         else message();
     }
 
+
     public void message()
     {
         if(paramText == null) {
