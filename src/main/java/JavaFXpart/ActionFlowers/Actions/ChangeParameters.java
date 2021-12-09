@@ -118,6 +118,7 @@ public class ChangeParameters
     RadioButton length;
     RadioButton days;
     RadioButton color;
+    ToggleGroup radioButtonGroup;
     public void buttonsToChange()
     {
         if( length != null && days != null && color != null) {
@@ -133,7 +134,7 @@ public class ChangeParameters
         color = new StartMenu().buttonConstructor("Color",1,2,250.0,400.0);
         color.setOnAction(actionEvent -> {colorToChange(flowerToChange.getName());});
 
-        ToggleGroup radioButtonGroup = new ToggleGroup();
+        radioButtonGroup = new ToggleGroup();
         length.setToggleGroup(radioButtonGroup);
         days.setToggleGroup(radioButtonGroup);
         color.setToggleGroup(radioButtonGroup);
@@ -274,7 +275,7 @@ public class ChangeParameters
     Text paramText;
     public void insertParameters()
     {
-        if(len != 0 || day != 0 || colorGlobal != null){
+        if(len != 0 || day != 0 || colorGlobal != null || radioButtonGroup.getSelectedToggle() == null){
             if(len != 0 && len != flowerToChange.getLen()) {
                 flowerToChange.setLen(len);
                 StartMenu.pane.getChildren().remove(paramText);
@@ -290,15 +291,17 @@ public class ChangeParameters
                 StartMenu.pane.getChildren().remove(paramText);
                 paramText = null;
             }
-            else {
-                if(paramText != null){
-                    StartMenu.pane.getChildren().remove(paramText);
-                    paramText = null;
-                }
-                paramText = new StartMenu().textConstructor("Parameter is unselected\nor parameter is similar\n   to previous one",1,2,210.0,235.0);
-                paramText.setFill(Color.RED);
-                StartMenu.pane.getChildren().add(paramText);
-            }
+            else message();
+        }
+        else message();
+    }
+
+    public void message()
+    {
+        if(paramText == null) {
+            paramText = new StartMenu().textConstructor("Parameter is unselected\nor parameter is similar\n   to previous one",1,2,210.0,235.0);
+            paramText.setFill(Color.RED);
+            StartMenu.pane.getChildren().add(paramText);
         }
     }
 }
