@@ -241,7 +241,6 @@ public class ChangeParameters
                         finalLabelDays.setText("  <- Color = 3");
                     }
                 });
-
         StartMenu.pane.getChildren().add(finalLabelDays);
     }
 
