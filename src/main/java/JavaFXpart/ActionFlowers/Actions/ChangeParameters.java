@@ -274,7 +274,8 @@ public class ChangeParameters
     Text paramText;
     public void insertParameters()
     {
-        if(len != 0 || day != 0 || colorGlobal != null || radioButtonGroup.getSelectedToggle() == null){
+        if(len != 0 || day != 0 || colorGlobal != null || radioButtonGroup.getSelectedToggle() == null)
+        {
             if(len != 0 && len != flowerToChange.getLen()) {
                 flowerToChange.setLen(len);
                 StartMenu.pane.getChildren().remove(paramText);

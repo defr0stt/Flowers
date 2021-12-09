@@ -1,13 +1,16 @@
 
 Bouquet (sorted by days) :
 
- [ Chrys - 6 days ]
+ [ Rose - 7 days, Chrys - 8 days ]
 
-Flowers in range ( min = 0; max = 3 ) :
+Flowers in range ( min = 16; max = 50 ) :
 
-There are no flowers in this range
+Rose : value = 10$, length = 27 sm, freshness = 7 days Color : 0xff0000ff
+Chrysanthemum : value = 20$, length = 35 sm, freshness = 8 days Color : 0x9370dbff
+
 Flowers :
 
+	Rose - 1 flower(s) - 10$
 	Chrysanthemum - 1 flower(s) - 20$
 
-Total sum : 25 $
+Total sum : 35 $
