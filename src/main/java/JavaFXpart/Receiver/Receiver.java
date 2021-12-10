@@ -1,7 +1,8 @@
 package JavaFXpart.Receiver;
 
-import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.ActionFlowers.Actions.*;
+import JavaFXpart.Additional.Actions.FileActions;
+import JavaFXpart.Additional.Actions.Information;
 import JavaFXpart.Additional.Additional;
 
 public class Receiver {
@@ -12,8 +13,8 @@ public class Receiver {
 
     public void variation(Additional a, int i) {
         switch (i) {
-            case 1: a.bouquetFromFile();break;
-            case 2: a.information();break;
+            case 1: new FileActions().bouquetFromFile();break;
+            case 2: new Information().information();break;
         }
     }
     public void variation(int i)
