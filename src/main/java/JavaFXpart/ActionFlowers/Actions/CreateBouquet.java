@@ -1,6 +1,7 @@
 package JavaFXpart.ActionFlowers.Actions;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
+import JavaFXpart.Additional.Actions.FileActions;
 import JavaFXpart.Additional.Additional;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static JavaFXpart.Additional.Additional.iFile;
+import static JavaFXpart.Additional.Actions.FileActions.iFile;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
 
@@ -199,8 +200,8 @@ public class CreateBouquet
         Map<Integer,String> funcResult = flowersInBouquet();
         bouquetInfo += "\n\n" + funcResult.get(sum);
         inFile += funcResult.get(sum);
-        new Additional().inFile("");
-        new Additional().inFile(inFile);
+        new FileActions().inFile("");
+        new FileActions().inFile(inFile);
         iFile=1;
 
         Text bouquet = new StartMenu().textConstructor(bouquetInfo,1,2,120.0,215.0);
