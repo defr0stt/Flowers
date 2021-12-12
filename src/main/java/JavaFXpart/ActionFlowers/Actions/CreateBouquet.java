@@ -171,7 +171,7 @@ public class CreateBouquet
         int rangeCheck = 0;
         for (FlowerTemplate a : flowers) {
             if( a.getLen() >= min && a.getLen() <= max ){
-                inFile += a.toString() + " Color : " + a.getColor(0,0).getFill() + "\n";
+                inFile += a.toString() + ", color = " + a.getColor(0,0).getFill() + "\n";
                 copyArray.add(a);
                 rangeCheck++;
             }
@@ -276,6 +276,7 @@ public class CreateBouquet
 
     public void databaseActions()
     {
+        new Receiver().variation(14);
         Database database = new Database();
         new Receiver().variation(database,1,"");
         for(FlowerTemplate a: flowers){

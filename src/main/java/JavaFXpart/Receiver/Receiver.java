@@ -22,6 +22,10 @@ public class Receiver {
             case 11: new FileActions().bouquetFromFile();break;
             case 12: new Information().information();break;
             case 13: new Database().flowersFromDB();break;
+            case 14:
+                    try {new Database().checkConnection();}
+                    catch (SQLException e) {e.printStackTrace();}
+                    break;
         }
     }
 
