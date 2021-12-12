@@ -42,8 +42,10 @@ public class Database
     private static ResultSet resultSet;
 
     public void checkConnection() throws SQLException {
-        connection = DriverManager.getConnection(jdbcURL,username,password);
-        statement = connection.createStatement();
+        if(connection == null){
+            connection = DriverManager.getConnection(jdbcURL,username,password);
+            statement = connection.createStatement();
+        }
     }
 
     public void newData(String queryData) throws SQLException {
