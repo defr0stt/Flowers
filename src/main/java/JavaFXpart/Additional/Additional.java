@@ -18,10 +18,12 @@ public class Additional implements Command
         additionalMenuView();
 
         Button infoButton = new StartMenu().buttonConstructor("Information","Info about flowers",1,2,260.0,425.0);
-        infoButton.setOnAction(actionEvent -> {new Receiver().variation(new Additional(),2);});
+        infoButton.setOnAction(actionEvent -> {new Receiver().variation(12);});
         Button fileButton = new StartMenu().buttonConstructor("Bouquet from file","Info about bouquet from file",1,2,310.0,410.0);
-        fileButton.setOnAction(actionEvent -> {new Receiver().variation(new Additional(),1);});
-        Button mainMenuButton = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,360.0,425.0);
+        fileButton.setOnAction(actionEvent -> {new Receiver().variation(11);});
+        Button dbButton = new StartMenu().buttonConstructor("Bouquet from database","Info about flower(s) in bouquet from database",1,2,360.0,395.0);
+        dbButton.setOnAction(actionEvent -> {new Receiver().variation(13);});
+        Button mainMenuButton = new StartMenu().buttonConstructor("Main menu","Back to 'Main menu'",1,2,410.0,425.0);
         mainMenuButton.setOnAction(actionEvent -> {
             try {
                 new StartMenu().start(StartMenu.defaultStage);
@@ -29,7 +31,7 @@ public class Additional implements Command
                 e.printStackTrace();
             }});
 
-        StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane, new Node[]{ infoButton, fileButton, mainMenuButton});
+        StartMenu.pane = new StartMenu().sumAllElements((AnchorPane) StartMenu.pane, new Node[]{ infoButton, fileButton, dbButton, mainMenuButton});
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
     }
 

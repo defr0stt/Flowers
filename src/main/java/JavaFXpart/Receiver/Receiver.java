@@ -1,9 +1,9 @@
 package JavaFXpart.Receiver;
 
 import JavaFXpart.ActionFlowers.Actions.*;
-import JavaFXpart.Additional.Actions.FileActions;
-import JavaFXpart.Additional.Actions.Information;
-import JavaFXpart.Additional.Additional;
+import JavaFXpart.Additional.Actions.*;
+
+import java.sql.SQLException;
 
 public class Receiver {
 
@@ -11,12 +11,6 @@ public class Receiver {
         obj.execute();
     }
 
-    public void variation(Additional a, int i) {
-        switch (i) {
-            case 1: new FileActions().bouquetFromFile();break;
-            case 2: new Information().information();break;
-        }
-    }
     public void variation(int i)
     {
         switch (i){
@@ -25,6 +19,28 @@ public class Receiver {
             case 3: new FlowerList().flowerList();break;
             case 4: new ChangeParameters().changeFlowerParameters();break;
             case 5: new CreateBouquet().createBouquet();break;
+            case 11: new FileActions().bouquetFromFile();break;
+            case 12: new Information().information();break;
+            case 13: new Database().flowersFromDB();break;
+        }
+    }
+
+    public void variation(Database db, int i, String query)
+    {
+        switch (i){
+            case 1:
+                try {
+                    db.deleteData();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }break;
+
+            case 2:
+                try {
+                    db.newData(query);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }break;
         }
     }
 }

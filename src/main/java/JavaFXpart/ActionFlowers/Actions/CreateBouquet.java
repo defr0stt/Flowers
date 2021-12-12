@@ -1,8 +1,8 @@
 package JavaFXpart.ActionFlowers.Actions;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
+import JavaFXpart.Additional.Actions.Database;
 import JavaFXpart.Additional.Actions.FileActions;
-import JavaFXpart.Additional.Additional;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
 import JavaFXpart.StartMenu;
@@ -207,6 +207,7 @@ public class CreateBouquet
         Text bouquet = new StartMenu().textConstructor(bouquetInfo,1,2,120.0,215.0);
         StartMenu.pane.getChildren().add(bouquet);
         if(bouquetList != null) StartMenu.pane.getChildren().add(rangeChoiceBox);
+        databaseActions();
     }
 
     public void sorting()   // selection sort (max elem goes last place in array)
@@ -271,5 +272,17 @@ public class CreateBouquet
 
         result.put(sum,forFile);
         return result;
+    }
+
+    public void databaseActions()
+    {
+        Database database = new Database();
+        new Receiver().variation(database,1,"");
+        for(FlowerTemplate a: flowers){
+            Ellipse ellipse = a.getColor(0,0);
+            String dbLine = "'" + a.getName() + "','" + ellipse.getFill() + "'," +
+                    a.getLen() + "," + a.getDays() + "," + a.getValue();
+            new Receiver().variation(database,2,dbLine);
+        }
     }
 }
