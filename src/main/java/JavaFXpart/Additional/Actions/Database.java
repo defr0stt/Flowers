@@ -70,7 +70,6 @@ public class Database
                     "length = " + resultSet.getString("length") + " sm, freshness = " + resultSet.getString("freshness")
                     + "day(s), color = " + resultSet.getString("color") + "\n";
         }
-
         return infoLine;
     }
 }
