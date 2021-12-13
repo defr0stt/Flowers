@@ -78,7 +78,7 @@ changing flower parameters and creating bouquet of created flowers. To do this a
 
 ![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/Flower1.PNG)
 
-### <-> Create flower
+### <-> Create flower <->
 
 This function can create flowers with special parameters.
 
@@ -91,7 +91,17 @@ This function can create flowers with special parameters.
 - **_inputToChoose()_ , _createFlowerColor()_** methods for visualising sliders and ellipses with colors.
 - **_confirmingCreation()_** method for checking that all parameters are choosen.
 
-### <-> Delete flower
+### <-> Delete flower <->
 
 This function can delete created flower (if it exists).
+
+![DeleteFlower1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/delete/delete1.png)
+
+![DeleteFlower2](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/delete/delete2.PNG)
+
+- **_deleteFlower()_** the main method of the process of deleting.
+- **_confirmDeleting()_** it's the process of confirming of flower deleting.
+- **_clearAll()_** deletes all created flowers.
+
+### <-> Flower list <->
 
