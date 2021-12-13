@@ -79,3 +79,6 @@ changing flower parameters and creating bouquet of created flowers. To do this a
 ![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower1.PNG)
 
 ### <-> Create flower
+
+This function can create flowers with special parameters.
+
