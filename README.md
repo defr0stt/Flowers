@@ -112,3 +112,20 @@ This function can show all created flowers.
 - **_flowerList()_** shows all created flowers and their information.
 
 ### <-> Change flower parameters <->
+
+This function can change parameters in the list of created flowers.
+
+![ChangePar1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/changePar/change1.PNG)
+
+![ChangePar2](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/changePar/change2.PNG)
+
+- **_changeFlowerParameters()_** the main method of the process of changing.
+- **_buttonsToChange()_** specialized for showing buttons of parameters which user can change.
+- **_parametersToChange()_** creates sliders.
+- **_colorsToChange()_** creates ellipses from available colors.
+- **_checkFunction()_** method checkes some objects on the screen which needed to be deleted.
+- **_insertParameters()_** changes selected parameter.
+- **_message()_** informs you about incorrect selecting of parameters.
+
+### <-> Create bouquet <->
+
