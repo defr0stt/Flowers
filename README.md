@@ -43,6 +43,7 @@ This class is the main in the program. It starts method **_launch()_** which in 
 public class StartMenu extends Application {
 
     public static void main(String[] args) {
+           ...
         launch();
     }
     
@@ -77,3 +78,4 @@ changing flower parameters and creating bouquet of created flowers. To do this a
 
 ![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower1.PNG)
 
+### <-> Create flower
