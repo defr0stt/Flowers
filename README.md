@@ -145,3 +145,75 @@ This function can create bouquet of created flowers.
 
 ## > Additional menu
 
+This menu intended for showing information about flowers, created bouquet from file and showes info from database.
+To do this actions there are some buttons.
+
+![Additional1](https://github.com/defr0stt/Flowers/blob/master/screens/Additional/Additional1.png)
+
+### <-> Information about flowers <->
+
+This function can show information about flowers.
+
+![Information1](https://github.com/defr0stt/Flowers/blob/master/screens/Additional/info/info1.png)
+
+- **_information()_** showes infromation about all types of flowers.
+
+### <-> Bouquet from file <->
+
+This function can show information about bouquet from the file.
+
+![FromFile1](https://github.com/defr0stt/Flowers/blob/master/screens/Additional/fromFlie/fromFile1.PNG)
+
+- **_bouquetFromFile()_** showes created bouquet from file.
+- **_inFile(...)_** writes info in file.
+- **_information()_** writes info from file into String variable.
+
+### <-> Bouquet from database <->
+
+This function can show information about bouquet from the database.
+
+![FromDB](https://github.com/defr0stt/Flowers/blob/master/screens/Additional/fromDB/fromDB1.png)
+
+- **_flowersFromDB()_** created for showes info from DB.
+- **_checkConnection()_** checks the connection to DB.
+- **_newData()_** writes new data to database.
+- **_deleteData()_** deletes data from database.
+- **_readingDataFromDB()_** reads all data to dataset.
+
+## > Logger
+
+Realized with the default functionalities without connection libraries.
+```
+public class Logger
+{
+    public static java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Logger.class.getName());
+
+    public static class MyFormatter extends Formatter {
+
+        @Override
+        public String format(LogRecord record)
+        {
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String time = localDateTime.getDayOfMonth() + "-" + localDateTime.getMonthValue() + "-" + localDateTime.getYear() +
+                    " " + localDateTime.getHour() + ":" + localDateTime.getMinute() + ":" + localDateTime.getSecond();
+            return time + " -- " + record.getLevel() + " : " + record.getMessage() + "\n";
+        }
+    }
+}
+```
+Logger file saves in home derectory. Logger file has the special pattern of writing data.
+```
+public static void main(String[] args) {
+        Handler fileHandler = null;
+        try {
+            fileHandler = new FileHandler("%h/LoggerFlowers.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        fileHandler.setFormatter(new Logger.MyFormatter());
+        logger.setUseParentHandlers(false);
+        logger.addHandler(fileHandler);
+        logger.info("START OF THE PROGRAM");
+                ...
+    }
+```
