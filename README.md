@@ -56,7 +56,7 @@ public class StartMenu extends Application {
 It throws IOException because of that method calling other methods in which contained ```FileInputStream (wayToImage)```
 which can lead to ```FileNotFoundException```. Start menu of my program has the next view : 
 
-![StartMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Start1.png)
+![StartMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Start/Start1.png)
 
 In the left bottom corner program has an animation of blinking image. There are 2 buttons which help you to move from
 one menu item to another and 1 button to close this program.
@@ -76,9 +76,22 @@ are created for adding or deleting objects from the scene.
 This menu intended for actions with flowers like creating, deleteng flowers, displaying list of created flowers,
 changing flower parameters and creating bouquet of created flowers. To do this actions there are some buttons.
 
-![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower1.PNG)
+![FlowerMenu1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/Flower1.PNG)
 
 ### <-> Create flower
 
 This function can create flowers with special parameters.
+
+![CreateFlower1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/create/create1.png)
+
+![CreateFlower2](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/create/create2.PNG)
+
+- **_createFlower()_** it's the main method of creating flowers.
+- **_chooseFlowerToCreate()_** refreshes interface element when you choose flowers.
+- **_inputToChoose()_ , _createFlowerColor()_** methods for visualising sliders and ellipses with colors.
+- **_confirmingCreation()_** method for checking that all parameters are choosen.
+
+### <-> Delete flower
+
+This function can delete created flower (if it exists).
 
