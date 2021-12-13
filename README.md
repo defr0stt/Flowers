@@ -217,3 +217,5 @@ public static void main(String[] args) {
                 ...
     }
 ```
+
+![Logger](https://github.com/defr0stt/Flowers/blob/master/screens/Logger/logger.PNG)
