@@ -105,3 +105,10 @@ This function can delete created flower (if it exists).
 
 ### <-> Flower list <->
 
+This function can show all created flowers.
+
+![FlowerList1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/list/list1.png)
+
+- **_flowerList()_** shows all created flowers and their information.
+
+### <-> Change flower parameters <->
