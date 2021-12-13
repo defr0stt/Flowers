@@ -11,10 +11,13 @@ import javafx.scene.text.Text;
 
 import java.io.*;
 
+import static JavaFXpart.Logger.Logger.logger;
+
 public class Additional implements Command
 {
     @Override
     public void execute()  {
+        logger.info("ADDITIONAL MENU");
         additionalMenuView();
 
         Button infoButton = new StartMenu().buttonConstructor("Information","Info about flowers",1,2,260.0,425.0);

@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
+import static JavaFXpart.Logger.Logger.logger;
 
 public class FlowerList
 {
@@ -23,6 +24,8 @@ public class FlowerList
     ChoiceBox<FlowerTemplate> changeChoiceBox = new ChoiceBox<FlowerTemplate>(flowerList);
     public void flowerList()
     {
+        logger.info("SHOWING THE LIST OF FLOWERS");
+
         Text welcomeFlowerList = new StartMenu().textConstructor("Flower list",1,2,80.0,400.0);
         welcomeFlowerList.setStyle("-fx-font-size: 24px;");
 

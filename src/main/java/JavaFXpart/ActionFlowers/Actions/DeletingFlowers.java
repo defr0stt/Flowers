@@ -15,6 +15,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
+import static JavaFXpart.Logger.Logger.logger;
 
 public class DeletingFlowers
 {
@@ -31,6 +32,8 @@ public class DeletingFlowers
     Text deleteText;
     public void deleteFlower()
     {
+        logger.info("DELETING A FLOWER");
+
         Text welcomeDeleteFlower = new StartMenu().textConstructor("Deleting a flower",1,2,80.0,370.0);
         welcomeDeleteFlower.setStyle("-fx-font-size: 24px;");
 
@@ -94,6 +97,8 @@ public class DeletingFlowers
 
             StartMenu.pane.getChildren().add(lastCreation);
             flowers.remove(flowerToDelete);
+
+            logger.info("FLOWER WAS DELETED");
         }
         else{
             notCorrectParameters = new StartMenu().textConstructor("No flower was selected",1,2,210.0,395.0);
@@ -119,5 +124,7 @@ public class DeletingFlowers
 
         StartMenu.pane.getChildren().add(lastCreation);
         flowers.clear();
+
+        logger.info("ALL FLOWERS WERE DELETED");
     }
 }

@@ -24,12 +24,15 @@ import java.util.Map;
 import static JavaFXpart.Additional.Actions.FileActions.iFile;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
+import static JavaFXpart.Logger.Logger.logger;
 
 public class CreateBouquet
 {
     Button confirmButton;
     public void createBouquet()
     {
+        logger.info("START OF CREATING A BOUQUET");
+
         Text welcomeBouquet = new StartMenu().textConstructor("Creating a bouquet",1,2,80.0,350.0);
         welcomeBouquet.setStyle("-fx-font-size: 24px;");
 
@@ -208,6 +211,8 @@ public class CreateBouquet
         StartMenu.pane.getChildren().add(bouquet);
         if(bouquetList != null) StartMenu.pane.getChildren().add(rangeChoiceBox);
         databaseActions();
+
+        logger.info("END OF CHANGING PARAMETERS");
     }
 
     public void sorting()   // selection sort (max elem goes last place in array)

@@ -2,6 +2,7 @@ package JavaFXpart;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Additional.Additional;
+import JavaFXpart.Logger.Logger;
 import JavaFXpart.Receiver.Receiver;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
@@ -24,10 +25,25 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+
+import static JavaFXpart.Logger.Logger.logger;
 
 public class StartMenu extends Application {
 
     public static void main(String[] args) {
+        Handler fileHandler = null;
+        try {
+            fileHandler = new FileHandler("%h/LoggerFlowers.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        fileHandler.setFormatter(new Logger.MyFormatter());
+        logger.setUseParentHandlers(false);
+        logger.addHandler(fileHandler);
+        logger.info("START OF THE PROGRAM");
+
         launch();
     }
 
@@ -37,6 +53,7 @@ public class StartMenu extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        logger.info("MAIN MENU");
         defaultStage = stage;
         // ===========================================================================================================
         //                                   Main menu greeting and imagine of flower
@@ -125,6 +142,14 @@ public class StartMenu extends Application {
         return buttonExample;
     }
 
+    public Ellipse ellipseConstructor(double v1, double v2, double v3, double v4, Color fill, Color width, double strokeWidth)
+    {
+        Ellipse ellipseExample = new Ellipse(v1,v2,v3,v4);
+        ellipseExample.setFill(fill);
+        ellipseExample.setStrokeWidth(strokeWidth);
+        ellipseExample.setStroke(width);
+        return ellipseExample;
+    }
 
     public Text textConstructor(String textName, int leveling1, int leveling2, Double paramTB, Double paramRL )
     {
@@ -163,14 +188,5 @@ public class StartMenu extends Application {
     {
         for (Node a: obj) anchorPane.getChildren().remove(a);
         return anchorPane;
-    }
-
-    public Ellipse ellipseConstructor(double v1, double v2, double v3, double v4, Color fill, Color width, double strokeWidth)
-    {
-        Ellipse ellipseExample = new Ellipse(v1,v2,v3,v4);
-        ellipseExample.setFill(fill);
-        ellipseExample.setStrokeWidth(strokeWidth);
-        ellipseExample.setStroke(width);
-        return ellipseExample;
     }
 }

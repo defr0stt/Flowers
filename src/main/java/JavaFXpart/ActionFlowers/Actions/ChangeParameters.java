@@ -10,13 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
+import static JavaFXpart.Logger.Logger.logger;
 
 public class ChangeParameters
 {
@@ -32,6 +35,8 @@ public class ChangeParameters
     Ellipse currentColor;
     public void changeFlowerParameters()
     {
+        logger.info("START OF CHANGING PARAMETERS");
+
         Text welcomeChangeFlower = new StartMenu().textConstructor("Changing a flower",1,2,80.0,370.0);
         welcomeChangeFlower.setStyle("-fx-font-size: 24px;");
 
@@ -84,13 +89,8 @@ public class ChangeParameters
             insertParameters();
             if(paramText == null) {
                 if (notCorrectParameters != null) StartMenu.pane.getChildren().remove(notCorrectParameters);
-                StartMenu.pane.getChildren().remove(changeChoiceBox);
-                StartMenu.pane.getChildren().remove(confirmChange);
-                StartMenu.pane.getChildren().remove(length);
-                StartMenu.pane.getChildren().remove(days);
-                StartMenu.pane.getChildren().remove(color);
-                StartMenu.pane.getChildren().remove(changeText);
-                StartMenu.pane.getChildren().remove(currentColor);
+                StartMenu.pane = new StartMenu().deleteElements((AnchorPane) StartMenu.pane,
+                        new Node[]{changeChoiceBox,confirmChange,length,days,color,changeText,currentColor});
 
                 changeText = new StartMenu().textConstructor(flowerToChange.toString(),
                         1, 2, 280.0, 210.0);
@@ -106,6 +106,8 @@ public class ChangeParameters
                 lastCreation.setStyle("-fx-font-size: 18px;");
 
                 StartMenu.pane.getChildren().add(lastCreation);
+
+                logger.info("END OF CHANGING PARAMETERS");
             }
         }
         else{

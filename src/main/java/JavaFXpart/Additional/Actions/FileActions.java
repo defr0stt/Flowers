@@ -13,10 +13,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import static JavaFXpart.Logger.Logger.logger;
+
 public class FileActions
 {
     public void bouquetFromFile()
     {
+        logger.info("INFO ABOUT BOUQUET FROM FILE");
+
         String fileCapacity = fromFile("bouquet.txt");
         if(fileCapacity.equals(""))     fileCapacity = "There is no data in file or\n      file not found";
 

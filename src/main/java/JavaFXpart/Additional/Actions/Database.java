@@ -8,11 +8,15 @@ import javafx.scene.text.Text;
 
 import java.sql.*;
 
+import static JavaFXpart.Logger.Logger.logger;
+
 public class Database
 {
 
     public void flowersFromDB()
     {
+        logger.info("READING DATA FROM DATABASE");
+
         Text welcomeBouquet = new StartMenu().textConstructor("Bouquet from database",1,2,80.0,350.0);
         welcomeBouquet.setStyle("-fx-font-size: 24px;");
 

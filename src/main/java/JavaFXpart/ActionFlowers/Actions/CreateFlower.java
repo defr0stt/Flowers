@@ -17,6 +17,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
 import static JavaFXpart.ActionFlowers.ActionFlowers.flowers;
+import static JavaFXpart.Logger.Logger.logger;
 
 public class CreateFlower
 {
@@ -26,6 +27,8 @@ public class CreateFlower
 
     public void createFlower()
     {
+        logger.info("CREATING A FLOWER");
+
         Text welcomeCreateFlower = new StartMenu().textConstructor("Creating a flower",1,2,80.0,370.0);
         welcomeCreateFlower.setStyle("-fx-font-size: 24px;");
 
@@ -196,6 +199,8 @@ public class CreateFlower
             StartMenu.pane.getChildren().add(finishToString);
             StartMenu.pane.getChildren().add(finalEllipse);
             StartMenu.pane.getChildren().add(lastCreation);
+
+            logger.info("END OF CREATING");
         }
         else{
             Text notCorrectParameters = new StartMenu().textConstructor("Incorrect parameters or\n nothing were selected",1,2,210.0,235.0);

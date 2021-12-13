@@ -12,9 +12,12 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+import static JavaFXpart.Logger.Logger.logger;
+
 public class Information
 {
     public void information() {
+        logger.info("INFORMATION ABOUT FLOWERS");
 
         new Additional().additionalMenuView();
         Text infoWelcome = new StartMenu().textConstructor("Information",1,2,80.0,400.0);

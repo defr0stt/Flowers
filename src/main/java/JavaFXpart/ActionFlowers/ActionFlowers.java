@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static JavaFXpart.Logger.Logger.logger;
+
 public class ActionFlowers implements Command {
 
     public static List<FlowerTemplate> flowers = new ArrayList()
@@ -40,6 +42,8 @@ public class ActionFlowers implements Command {
     @Override
     public void execute()
     {
+        logger.info("FLOWER MENU");
+
         Button createFlower = new StartMenu().buttonConstructor("Create flower","The process of creating flowers",1,2,165.0,417.0);
         createFlower.setOnAction(actionEvent -> {new Receiver().variation(1);});
         Button deleteFlower = new StartMenu().buttonConstructor("Delete flower","The process of deleting flowers",1,2,205.0,417.0);
