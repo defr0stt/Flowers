@@ -1,13 +1,14 @@
 
 Bouquet (sorted by days) :
 
- [ Chrys - 7 days, Chrys - 11 days ]
+ [ Orchid - 6 days ]
 
-Flowers in range ( min = 0; max = 35 ) :
+Flowers in range ( min = 0; max = 39 ) :
 
-There are no flowers in this range
+Orchid : value = 15$, length = 13 sm, freshness = 6 days, color = 0xc71585ff
+
 Flowers :
 
-	Chrysanthemum - 2 flower(s) - 40$
+	Tulip - 1 flower(s) - 15$
 
-Total sum : 45 $
+Total sum : 20 $
