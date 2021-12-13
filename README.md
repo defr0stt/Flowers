@@ -129,3 +129,19 @@ This function can change parameters in the list of created flowers.
 
 ### <-> Create bouquet <->
 
+This function can create bouquet of created flowers.
+
+![Bouquet1](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/bouquet/bouquet1.PNG)
+
+![Bouquet2](https://github.com/defr0stt/Flowers/blob/master/screens/Flower/bouquet/bouquet2.PNG)
+
+- **_createBouquet()_** the main method of the process of creating a bouquet.
+- **_rangeAndPackaging()_** devided for creating range length sliders and demand of packaging.
+- **_confirmProcess()_** checking whether all paramrters are selected.
+- **_creatingProcess()_** it's creating of bouquet.
+- **_sorting()_** it's a type of sorting for freshness.
+- **_flowersInBouquet()_** method for showing type and count of flowers in bouquet.
+- **_databaseActions()_** for writting data to database.
+
+## > Additional menu
+
