@@ -22,7 +22,6 @@ public class Database
 
         Button backToFlower = new StartMenu().buttonConstructor("Additional menu","Back to 'Additional menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
-
         Text dbFlowerText = null;
         try {
             checkConnection();
