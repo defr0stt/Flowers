@@ -58,13 +58,11 @@ public class Database
     }
 
     public void deleteData() throws SQLException {
-        checkConnection();
         String query = "TRUNCATE TABLE bouquet";
         statement.executeUpdate(query);
     }
 
     public String readingDataFromDB() throws SQLException {
-        checkConnection();
         String infoLine = "\t\t\t\tFlowers in bouquet:\n\n";
         String query = "SELECT * FROM bouquet";
         resultSet = statement.executeQuery(query);
