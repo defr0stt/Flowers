@@ -77,7 +77,7 @@ public class StartMenu extends Application {
         additional.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
 
         Button exit = buttonConstructor("Exit","Finishes the program",1,2,380.0,430.0);
-        exit.setOnAction(actionEvent -> {System.exit(0);});
+        exit.setOnAction(actionEvent -> {logger.info("END OF THE PROGRAM");System.exit(0);});
 
         // ===========================================================================================================
         //                                                  Connecting all parts
