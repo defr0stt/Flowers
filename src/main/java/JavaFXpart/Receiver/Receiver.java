@@ -26,6 +26,9 @@ public class Receiver {
                     try {new Database().checkConnection();}
                     catch (SQLException e) {e.printStackTrace();}
                     break;
+            case 15: try {new Database().closeConnection();}
+                     catch (SQLException e) {e.printStackTrace();}
+                     break;
         }
     }
 

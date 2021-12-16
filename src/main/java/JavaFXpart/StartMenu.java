@@ -44,8 +44,6 @@ public class StartMenu extends Application {
         logger.addHandler(fileHandler);
         logger.info("START OF THE PROGRAM");
 
-        new Receiver().variation(14);
-
         launch();
     }
 

@@ -281,6 +281,7 @@ public class CreateBouquet
 
     public void databaseActions()
     {
+        new Receiver().variation(14);
         Database database = new Database();
         new Receiver().variation(database,1,"");
         for(FlowerTemplate a: flowers){
@@ -289,5 +290,6 @@ public class CreateBouquet
                     a.getLen() + "," + a.getDays() + "," + a.getValue();
             new Receiver().variation(database,2,dbLine);
         }
+        new Receiver().variation(15);
     }
 }

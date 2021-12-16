@@ -17,6 +17,8 @@ public class Database
     {
         logger.info("READING DATA FROM DATABASE");
 
+        new Receiver().variation(14);
+
         Text welcomeBouquet = new StartMenu().textConstructor("Bouquet from database",1,2,80.0,350.0);
         welcomeBouquet.setStyle("-fx-font-size: 24px;");
 
@@ -35,6 +37,8 @@ public class Database
         StartMenu.pane.getChildren().add(backToFlower);
         StartMenu.pane.getChildren().add(dbFlowerText);
         new StartMenu().sceneStarter(StartMenu.pane, StartMenu.defaultStage);
+
+        new Receiver().variation(15);
     }
 
     private static final String jdbcURL = "jdbc:mysql://localhost: 3306/flower";
@@ -46,8 +50,15 @@ public class Database
 
     public void checkConnection() throws SQLException {
         if(connection == null){
-            connection = DriverManager.getConnection(jdbcURL,username,password);
-            statement = connection.createStatement();
+                connection = DriverManager.getConnection(jdbcURL, username, password);
+                statement = connection.createStatement();
+        }
+    }
+
+    public void closeConnection() throws SQLException {
+        if(!connection.isClosed()) {
+            connection.close();
+            connection = null;
         }
     }
 
