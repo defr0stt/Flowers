@@ -3,6 +3,7 @@ package JavaFXpart.ActionFlowers.Actions;
 import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +40,7 @@ public class DeletingFlowers
 
         StartMenu.pane = new ActionFlowers().flowerMenuView();
         StartMenu.pane.getChildren().add(welcomeDeleteFlower);
-        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,415.0,425.0);
+        Button confirmButton = new StartMenu().buttonConstructor(TextElements.confirm,"Confirm the flower deleting",1,2,415.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmDeleting();});
         Button delAll = new StartMenu().buttonConstructor("Delete all flowers","Delete all created flowers",1,2,455.0,400.0);
         delAll.setOnAction(actionEvent -> {clearAll();});
@@ -73,7 +74,7 @@ public class DeletingFlowers
             StartMenu.pane.getChildren().add(deleteText);
         }
         else {
-            Text example = new StartMenu().textConstructor("There are no flowers to delete", 1, 2, 230.0, 360.0);
+            Text example = new StartMenu().textConstructor(TextElements.noFlowersDelete, 1, 2, 230.0, 360.0);
             example.setStyle("-fx-font-size: 16px;");
             StartMenu.pane.getChildren().remove(buttonDelete);
             StartMenu.pane.getChildren().remove(deleteAll);
@@ -101,7 +102,7 @@ public class DeletingFlowers
             logger.info("FLOWER WAS DELETED");
         }
         else{
-            notCorrectParameters = new StartMenu().textConstructor("No flower was selected",1,2,210.0,395.0);
+            notCorrectParameters = new StartMenu().textConstructor(TextElements.noFlowersSelected,1,2,210.0,395.0);
             notCorrectParameters.setFill(Color.RED);
             StartMenu.pane.getChildren().add(notCorrectParameters);
         }

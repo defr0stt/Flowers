@@ -2,6 +2,7 @@ package JavaFXpart.Additional.Actions;
 
 import JavaFXpart.Additional.Additional;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -21,8 +22,8 @@ public class FileActions
     {
         logger.info("INFO ABOUT BOUQUET FROM FILE");
 
-        String fileCapacity = fromFile("bouquet.txt");
-        if(fileCapacity.equals(""))     fileCapacity = "There is no data in file or\n      file not found";
+        String fileCapacity = fromFile(TextElements.fileName);
+        if(fileCapacity.equals(""))     fileCapacity = TextElements.noDataFileNotFound;
 
         new Additional().additionalMenuView();
         Text fileWelcome = new StartMenu().textConstructor("Reading data from file",1,2,80.0,340.0);
@@ -49,7 +50,7 @@ public class FileActions
     public static int iFile=1;
     public void inFile(String line)
     {
-        File file1 = new File("bouquet.txt");
+        File file1 = new File(TextElements.fileName);
         try {
             if(!file1.exists()) {
                 file1.createNewFile();
@@ -65,7 +66,7 @@ public class FileActions
                 obj1.close();
                 iFile--;
             }
-            else Files.write(Paths.get("bouquet.txt"), line.getBytes(), StandardOpenOption.APPEND);    // adding in existing file
+            else Files.write(Paths.get(TextElements.fileName), line.getBytes(), StandardOpenOption.APPEND);    // adding in existing file
         }
         catch (IOException e) {
             e.printStackTrace();

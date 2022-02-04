@@ -5,6 +5,7 @@ import JavaFXpart.Additional.Actions.Database;
 import JavaFXpart.Additional.Actions.FileActions;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,7 +40,7 @@ public class CreateBouquet
         StartMenu.pane = new ActionFlowers().flowerMenuView();
         StartMenu.pane.getChildren().add(welcomeBouquet);
 
-        confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,455.0,425.0);
+        confirmButton = new StartMenu().buttonConstructor(TextElements.confirm,"Confirm the flower deleting",1,2,455.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmProcess();});
         Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
@@ -111,7 +112,7 @@ public class CreateBouquet
             }
         }
         else {
-            Text example = new StartMenu().textConstructor("There are no flowers to\n     create bouquet", 1, 2, 230.0, 370.0);
+            Text example = new StartMenu().textConstructor(TextElements.noFlowersCreateBouquet, 1, 2, 230.0, 370.0);
             example.setStyle("-fx-font-size: 16px;");
             StartMenu.pane.getChildren().remove(confirmButton);
             StartMenu.pane.getChildren().add(example);
@@ -129,7 +130,7 @@ public class CreateBouquet
         }
         else{
             if(incorrect == null) {
-                incorrect = new StartMenu().textConstructor("Parameters are \nunselected\nor min > max", 1, 2, 190.0, 215.0);
+                incorrect = new StartMenu().textConstructor(TextElements.parameterMinMax, 1, 2, 190.0, 215.0);
                 incorrect.setFill(Color.RED);
                 StartMenu.pane.getChildren().add(incorrect);
             }
@@ -180,8 +181,8 @@ public class CreateBouquet
             }
         }
         if(rangeCheck == 0){
-            bouquetInfo += "There are no flowers in this range\n";
-            inFile += "There are no flowers in this range";
+            bouquetInfo += TextElements.noFlowersInRange + "\n";
+            inFile += TextElements.noFlowersInRange;
         }
         else{
             height += 60;

@@ -3,6 +3,7 @@ package JavaFXpart.ActionFlowers.Actions;
 import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +47,7 @@ public class FlowerList
             StartMenu.pane.getChildren().add(deleteText);
         }
         else {
-            Text example = new StartMenu().textConstructor("There are no created flowers", 1, 2, 230.0, 360.0);
+            Text example = new StartMenu().textConstructor(TextElements.noCreatedFlowers, 1, 2, 230.0, 360.0);
             example.setStyle("-fx-font-size: 16px;");
             StartMenu.pane.getChildren().add(example);
         }

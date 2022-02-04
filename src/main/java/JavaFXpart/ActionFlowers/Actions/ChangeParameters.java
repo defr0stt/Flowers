@@ -3,6 +3,7 @@ package JavaFXpart.ActionFlowers.Actions;
 import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Flowers.FlowerTemplate;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,7 +43,7 @@ public class ChangeParameters
 
         StartMenu.pane = new ActionFlowers().flowerMenuView();
         StartMenu.pane.getChildren().add(welcomeChangeFlower);
-        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower deleting",1,2,455.0,425.0);
+        Button confirmButton = new StartMenu().buttonConstructor(TextElements.confirm,"Confirm the flower deleting",1,2,455.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmChanging();});
         Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
@@ -111,7 +112,7 @@ public class ChangeParameters
             }
         }
         else{
-            notCorrectParameters = new StartMenu().textConstructor("No flower was selected",1,2,210.0,395.0);
+            notCorrectParameters = new StartMenu().textConstructor(TextElements.noFlowersSelected,1,2,210.0,395.0);
             notCorrectParameters.setFill(Color.RED);
             StartMenu.pane.getChildren().add(notCorrectParameters);
         }
@@ -298,11 +299,10 @@ public class ChangeParameters
         else message();
     }
 
-
     public void message()
     {
         if(paramText == null) {
-            paramText = new StartMenu().textConstructor("Parameter is unselected\nor parameter is similar\n   to previous one",1,2,210.0,235.0);
+            paramText = new StartMenu().textConstructor(TextElements.unselectedSimilarParameter,1,2,210.0,235.0);
             paramText.setFill(Color.RED);
             StartMenu.pane.getChildren().add(paramText);
         }

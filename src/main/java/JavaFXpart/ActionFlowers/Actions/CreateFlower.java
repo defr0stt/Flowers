@@ -3,6 +3,7 @@ package JavaFXpart.ActionFlowers.Actions;
 import JavaFXpart.ActionFlowers.ActionFlowers;
 import JavaFXpart.Flowers.*;
 import JavaFXpart.Receiver.Receiver;
+import JavaFXpart.Receiver.TextElements;
 import JavaFXpart.StartMenu;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -52,7 +53,7 @@ public class CreateFlower
         orchid.setToggleGroup(radioButtonGroup);
         tulip.setToggleGroup(radioButtonGroup);
 
-        Button confirmButton = new StartMenu().buttonConstructor("Confirm","Confirm the flower creation",1,2,455.0,425.0);
+        Button confirmButton = new StartMenu().buttonConstructor(TextElements.confirm,"Confirm the flower creation",1,2,455.0,425.0);
         confirmButton.setOnAction(actionEvent -> {confirmingCreation();});
         Button backToFlower = new StartMenu().buttonConstructor("Flower menu","Back to 'Flower menu'",1,2,495.0,413.0);
         backToFlower.setOnAction(actionEvent -> {new Receiver().transition(new ActionFlowers());});
@@ -203,7 +204,7 @@ public class CreateFlower
             logger.info("END OF CREATING");
         }
         else{
-            Text notCorrectParameters = new StartMenu().textConstructor("Incorrect parameters or\n nothing were selected",1,2,210.0,235.0);
+            Text notCorrectParameters = new StartMenu().textConstructor(TextElements.incorrectUnselected,1,2,210.0,235.0);
             notCorrectParameters.setFill(Color.RED);
             StartMenu.pane.getChildren().add(notCorrectParameters);
         }
