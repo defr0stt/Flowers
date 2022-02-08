@@ -1,6 +1,7 @@
 package JavaFXpart;
 
 import JavaFXpart.ActionFlowers.ActionFlowers;
+import JavaFXpart.Additional.Actions.Database;
 import JavaFXpart.Additional.Additional;
 import JavaFXpart.Logger.Logger;
 import JavaFXpart.Receiver.Receiver;
@@ -25,6 +26,7 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 
@@ -75,7 +77,7 @@ public class StartMenu extends Application {
         additional.setOnAction(actionEvent -> {new Receiver().transition(new Additional());});
 
         Button exit = buttonConstructor("Exit","Finishes the program",1,2,380.0,430.0);
-        exit.setOnAction(actionEvent -> {logger.info("END OF THE PROGRAM");System.exit(0);});
+        exit.setOnAction(actionEvent -> {logger.info("END OF THE PROGRAM"); System.exit(0);});
 
         // ===========================================================================================================
         //                                                  Connecting all parts
